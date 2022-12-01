@@ -2,9 +2,10 @@ html,
 body {
     font-family: 'League Spartan', sans-serif;
     margin: 0;
+    background: rgb(10, 2, 34);
 }
 header {
-    background-image: linear-gradient(rgba(157, 212, 228, 0.725), rgba(0, 0, 0, 0.725)), url('https://www.enlivant.com/optimize/getmedia/1fb76865-6b12-4218-92cc-0b3f587919e8/blogpost_movies_header_1155x357?width=1155&height=357&ext=.jpg&format=webp');
+    background-image: linear-gradient(rgba(44, 107, 183, 0.562), rgba(0, 0, 0, 0.725)), url('https://images.wallpapersden.com/image/download/avatar-the-way-of-water-2-hd_bWhobWeUmZqaraWkpJRmbmdlrWZlbWU.jpg');
     background-size: cover;
     background-position: center 21%;
     padding: 80px 40px;
@@ -16,6 +17,16 @@ header {
     margin: 0 auto;
     max-width: 550px;
 }
+.header-link{
+    text-decoration: none;
+    color: black;
+}
+.hide{
+    margin-right: 10px;
+    margin-top: 5px;
+    font-size: 20px;
+    color: whitesmoke;
+}
 
 .main-search-field {
     display: flex;
@@ -24,14 +35,17 @@ header {
     top: 200px;
     left: 50%;
     transform: translateX(-50%);
-    max-width: 550px;
-    width: 550px;
+    max-width: 600px;
+    width: 600px;
 }
 .main-search-field input {
     border: 1px solid var(--border);
     color: var(--greyDark);
     font-size: 1em;
     padding: 10px 40px;
+    border-radius: 10px 0 0 10px ;
+    background: none;
+    border: 2px solid rgb(44, 107, 183);
 }
 .main-search-field button {
     border: 1px solid var(--border);
@@ -40,7 +54,15 @@ header {
     padding: 10px 40px;
     cursor: pointer;
     transition: 0.5s;
+    background: rgb(44, 107, 183);
+    
 }
 .main-search-field button:hover{
-    background: rgb(182, 185, 180);
+    background:rgb(44, 107, 183);
+    border-radius: 0 10px 10px 0 ;
+    color: whitesmoke;
+}
+.box-search{
+    display: flex;
+    box-shadow: 3px 3px 4px rgba(128, 128, 128, 0.132);
 }
