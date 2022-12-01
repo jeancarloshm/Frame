@@ -1,26 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,800;1,800&display=swap');
 
 body {
-    background: black;
+    background: rgb(10, 2, 36);
     margin: 0;
-    height: 100vh;
     font-family:"Work Sans", sans-serif;
 }
-
 a {
     text-decoration: none;
     color: black;
 }
 
+
 header {
-    background: white;
-    width; 100;     
+    background-image: linear-gradient(rgba(0, 0, 0, 0.725), rgba(0, 0, 0, 0.725)), url('https://images.wallpapersden.com/image/download/avatar-the-way-of-water-2-hd_bWhobWeUmZqaraWkpJRmbmdlrWZlbWU.jpg');
+    background-size: cover;
+    background-position: center 21%;  
+    padding: 100px 50px;
 }
-
-.logo {
-    width: 40%;
-}
-
 
 .header-contents{
     align-items: center;
@@ -50,10 +46,11 @@ header {
     transform: translateX(-50%);
     max-width: 600px;
     width: 600px;
+
 }
 .main-search-field input {
-    border: 1px solid var(--border);
-    color: var(--greyDark);
+    border: 1px solid gray;
+    color: whitesmoke;
     font-size: 1em;
     padding: 10px 40px;
     border-radius: 10px 0 0 10px ;
@@ -61,8 +58,8 @@ header {
     border: 2px solid rgb(44, 107, 183);
 }
 .main-search-field button {
-    border: 1px solid var(--border);
-    color: var(--greyDark);
+    border: 1px solid rgb(44, 107, 183);
+    color: whitesmoke;
     font-size: 1em;
     padding: 10px 40px;
     cursor: pointer;
@@ -78,4 +75,18 @@ header {
 .box-search{
     display: flex;
     box-shadow: 3px 3px 4px rgba(128, 128, 128, 0.132);
+}
+nav{
+    display: flex;
+    
+}
+.nav-links{
+    list-style: none;
+    display: flex;
+    
+}
+.nav-items {
+    margin: 0 10px;
+
+
 }
