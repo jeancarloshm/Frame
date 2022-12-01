@@ -12,7 +12,7 @@ a {
 
 
 header {
-    background-image: linear-gradient(rgba(36, 153, 248, 0.267), rgba(92, 32, 141, 0.671)), url('https://images.wallpapersden.com/image/download/avatar-the-way-of-water-2-hd_bWhobWeUmZqaraWkpJRmbmdlrWZlbWU.jpg');
+    background-image: linear-gradient(rgba(36, 153, 248, 0.267), rgba(92, 32, 141, 0.671)), url('/images/Avatar.jpg');
     background-size: cover;
     background-position: center 21%;  
     padding: 100px 50px;
