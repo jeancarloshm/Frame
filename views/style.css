@@ -1,7 +1,7 @@
 html,
 body {
     font-family: 'League Spartan', sans-serif;
-
+    margin: 0;
 }
 header {
     background-image: linear-gradient(rgba(157, 212, 228, 0.725), rgba(0, 0, 0, 0.725)), url('https://www.enlivant.com/optimize/getmedia/1fb76865-6b12-4218-92cc-0b3f587919e8/blogpost_movies_header_1155x357?width=1155&height=357&ext=.jpg&format=webp');
@@ -9,6 +9,14 @@ header {
     background-position: center 21%;
     padding: 80px 40px;
 }
+.header-contents{
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    max-width: 550px;
+}
+
 .main-search-field {
     display: flex;
     margin: 0 auto;
@@ -18,4 +26,21 @@ header {
     transform: translateX(-50%);
     max-width: 550px;
     width: 550px;
+}
+.main-search-field input {
+    border: 1px solid var(--border);
+    color: var(--greyDark);
+    font-size: 1em;
+    padding: 10px 40px;
+}
+.main-search-field button {
+    border: 1px solid var(--border);
+    color: var(--greyDark);
+    font-size: 1em;
+    padding: 10px 40px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+.main-search-field button:hover{
+    background: rgb(182, 185, 180);
 }
