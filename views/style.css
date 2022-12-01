@@ -16,10 +16,11 @@ header {
     justify-content: space-between;
     margin: 0 auto;
     max-width: 550px;
+    color: whitesmoke;
 }
 .header-link{
     text-decoration: none;
-    color: black;
+    color: whitesmoke;
 }
 .hide{
     margin-right: 10px;
