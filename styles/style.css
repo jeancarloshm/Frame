@@ -1,15 +1,27 @@
-html,
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,800;1,800&display=swap');
+
 body {
-    font-family: 'League Spartan', sans-serif;
+    background: black;
     margin: 0;
-    background: rgb(10, 2, 34);
+    height: 100vh;
+    font-family:"Work Sans", sans-serif;
 }
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
 header {
-    background-image: linear-gradient(rgba(44, 107, 183, 0.562), rgba(0, 0, 0, 0.725)), url('https://images.wallpapersden.com/image/download/avatar-the-way-of-water-2-hd_bWhobWeUmZqaraWkpJRmbmdlrWZlbWU.jpg');
-    background-size: cover;
-    background-position: center 21%;
-    padding: 80px 40px;
+    background: white;
+    width; 100;     
 }
+
+.logo {
+    width: 40%;
+}
+
+
 .header-contents{
     align-items: center;
     display: flex;
