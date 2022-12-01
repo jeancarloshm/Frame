@@ -7,25 +7,17 @@ body {
 }
 a {
     text-decoration: none;
-    color: black;
+    color: whitesmoke;
 }
 
 
 header {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.725), rgba(0, 0, 0, 0.725)), url('https://images.wallpapersden.com/image/download/avatar-the-way-of-water-2-hd_bWhobWeUmZqaraWkpJRmbmdlrWZlbWU.jpg');
+    background-image: linear-gradient(rgba(36, 153, 248, 0.267), rgba(92, 32, 141, 0.671)), url('https://images.wallpapersden.com/image/download/avatar-the-way-of-water-2-hd_bWhobWeUmZqaraWkpJRmbmdlrWZlbWU.jpg');
     background-size: cover;
     background-position: center 21%;  
     padding: 100px 50px;
 }
 
-.header-contents{
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
-    margin: 0 auto;
-    max-width: 550px;
-    color: whitesmoke;
-}
 .header-link{
     text-decoration: none;
     color: whitesmoke;
@@ -41,7 +33,7 @@ header {
     display: flex;
     margin: 0 auto;
     position: absolute;
-    top: 200px;
+    top: 250px;
     left: 50%;
     transform: translateX(-50%);
     max-width: 600px;
@@ -57,36 +49,66 @@ header {
     background: none;
     border: 2px solid rgb(44, 107, 183);
 }
+
+
+
+.main-search-field input::placeholder{
+    color: #becefa;
+    
+}
+
 .main-search-field button {
+    display: flex;
     border: 1px solid rgb(44, 107, 183);
+    border-radius: 0 10px 10px 0;
     color: whitesmoke;
-    font-size: 1em;
-    padding: 10px 40px;
+    font-size: 20px;
+    padding: 10px 20px;
     cursor: pointer;
     transition: 0.5s;
     background: rgb(44, 107, 183);
+    text-shadow: 2px 2px 3px rgba(36, 36, 36, 0.555);
     
 }
 .main-search-field button:hover{
-    background:rgb(44, 107, 183);
-    border-radius: 0 10px 10px 0 ;
+     
+    border-radius: 0 25px 25px 0 ;
     color: whitesmoke;
 }
+
+
 .box-search{
     display: flex;
-    box-shadow: 3px 3px 4px rgba(128, 128, 128, 0.132);
+    box-shadow: 3px 3px 4px rgba(29, 29, 29, 0.336);
 }
-nav{
+
+.box-1{
     display: flex;
-    
+    justify-content: space-between;
 }
+
+.logo{
+    color: whitesmoke;
+    font-size: 30px;
+}
+
 .nav-links{
     list-style: none;
     display: flex;
+    line-height: 60px;
     
 }
 .nav-items {
     margin: 0 10px;
+}
 
+.nav-link{
+    color: whitesmoke;
+    transition: .5s;
+    font-size: 24px;
+}
 
+.nav-link:hover{
+    color: #834efd;
+    border-bottom: 2px solid #834efd;
 }

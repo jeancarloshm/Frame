@@ -6,26 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WatchList</title>
     <link rel="stylesheet" href= "style.css" >
+    <script src="https://kit.fontawesome.com/2c9680051d.js" crossorigin="anonymous"></script>
 
 </head>
 <body>
     <header>
-        <div class="header-contents">
-            <h1>Find your film</h1>
-            <a href="watchlist.html" class="header-link">My Watchlist</a>
-        </div>
-        <div class="logo-container">
-            <img class="logo" src="" alt="logo">
-           </div>
-      <nav>
-        <ul class="nav-links">
-            <li class="nav-items"><a href="#" class="active">Search</a></li>
-            <li class="nav-items"><a href="#">WatchList</a></li>
-            <li class="nav-items"><a href="#">Popular</a></li>
-        </ul>
+        <nav>
+
+            <div class="box-1">
+                <div class="logo">
+                    <h1>Logo</h1>
+                </div>
+                <ul class="nav-links">
+                    <li class="nav-items"><a href="#">WatchList</a></li>
+                    <li class="nav-items"><a href="#">Popular</a></li>
+                </ul>
       </nav>
     </header>
-
 
     <main>
     <div class="main-search-field">
@@ -33,7 +30,9 @@
             movie: </label>
             <div class="box-search">
                 <input type="text" for="submit" id="searchInput" placeholder="Search for a movie">
-                <button type="submit" value="Submit" id="searchBtn">Search</button>
+                <button type="submit" value="Submit" id="searchBtn">
+                <i class="search-icon fa-solid fa-magnifying-glass"></i>
+            </button>
             </div>
     </div>
 </main>
