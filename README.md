@@ -1,2 +1,2 @@
 # MyWatchList
-Movies watch list using TMDB API
+Movies/series watch list using TMDB API
