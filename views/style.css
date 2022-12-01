@@ -1,6 +1,7 @@
 html,
 body {
-    font-family: 'Inter', sans-serif;
+    font-family: 'League Spartan', sans-serif;
+
 }
 header {
     background-image: linear-gradient(rgba(157, 212, 228, 0.725), rgba(0, 0, 0, 0.725)), url('https://www.enlivant.com/optimize/getmedia/1fb76865-6b12-4218-92cc-0b3f587919e8/blogpost_movies_header_1155x357?width=1155&height=357&ext=.jpg&format=webp');
