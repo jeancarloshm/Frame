@@ -1,0 +1,14 @@
+#movies .col-md-3 img {
+    height: 240px;
+    width: 190px;
+    margin-top: 10px;
+  }
+  #movies .col-md-3 h5, p {
+    margin: 10px 0 15px 0;
+    font-size: 13px;
+    height: 30px;
+    color:white;
+  }
+  #movies, #movie img {
+    width: 100%;
+  }
