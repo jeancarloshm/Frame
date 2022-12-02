@@ -17,6 +17,20 @@ header {
     background-position: center 21%;  
     padding: 100px 50px;
 }
+@media (max-width: 650px) {
+    header h1 {
+        font-size: 2rem;
+        width: 100%;
+    }
+
+    .header {
+        flex-wrap: wrap;
+    }
+
+    .header-link {
+        text-decoration: underline;
+    }
+}
 
 .header-link{
     text-decoration: none;
@@ -39,6 +53,24 @@ header {
     max-width: 600px;
     width: 600px;
 
+}
+@media (max-width: 650px) {
+    .main-search-field {
+        flex-wrap: wrap;
+        gap: 0.5em;
+        width: 90%;
+    }
+
+    .main-search-field input {
+        border-radius: 6px;
+        flex-grow: 1;
+        width: 80%;
+    }
+    .main-search-field button {
+        border-radius: 6px;
+        flex-grow: 1;
+        width: 20%;
+    }
 }
 .main-search-field input {
     border: 1px solid gray;
