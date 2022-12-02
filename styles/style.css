@@ -23,7 +23,7 @@ header {
         width: 100%;
     }
 
-    .header {
+    .header-contents {
         flex-wrap: wrap;
     }
 
@@ -122,6 +122,7 @@ header {
 .logo{
     color: whitesmoke;
     font-size: 30px;
+    font-weight: bold;
 }
 
 .nav-links{
@@ -132,14 +133,18 @@ header {
 }
 .nav-items {
     margin: 0 10px;
+    padding: 0 15px;
+    height: 60px;
+    border-radius: 10px;
+    transition: all .4s;
+    cursor: pointer;
+    font-size: 18px;
+    text-transform: uppercase;
 }
+.nav-items:hover{
+    background: #041a50a3;
 
-.nav-link{
-    color: whitesmoke;
-    transition: .5s;
-    font-size: 24px;
 }
-
 .nav-link:hover{
     color: #834efd;
     border-bottom: 2px solid #834efd;
