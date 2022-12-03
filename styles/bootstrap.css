@@ -4,10 +4,11 @@
     width: 190px;
     margin-top: 10px;
   }
-  #movies .col-md-3 h5, p {
+  #movies .col-md-3 h5,h4, p {
     margin: 10px 0 15px 0;
     font-size: 13px;
     height: 30px;
+    color: whitesmoke;
   }
 
   #movies, #movie img {
@@ -15,5 +16,5 @@
   }
 
   #movies .col-md-3 {
-    background-color: white;
+
   }

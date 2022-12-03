@@ -117,7 +117,7 @@ header {
 .box-1{
     display: flex;
     justify-content: space-between;
-    font-size: 40px;
+    font-size: 80px;
 }
 
 .logo{
