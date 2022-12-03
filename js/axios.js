@@ -28,7 +28,7 @@
           displayMovies += `
           <div class="col-md-3">
           <div class="well text-center">
-            <img src="https://image.tmdb.org/t/p/original${movie.poster_path}">
+          <a href="https://www.themoviedb.org/movie/${movie.movie_id} target="_blank"><img src="https://image.tmdb.org/t/p/original${movie.poster_path}"></a>
             <h5>${movie.title}</h5>
             <h4>${movie.release_date}<h4>
             <a class="btn btn-primary" href="#">Add to watchlist</a>
