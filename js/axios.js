@@ -28,28 +28,39 @@
           displayMovies += `
           <div class="col-md-3">
           <div class="well text-center">
-          <a href="https://www.themoviedb.org/movie/${movie.movie_id} target="_blank"><img src="https://image.tmdb.org/t/p/original${movie.poster_path}"></a>
+          <img src="https://image.tmdb.org/t/p/original${movie.poster_path}"></a>
             <h5>${movie.title}</h5>
             <h4>${movie.release_date}<h4>
-            <a class="btn btn-primary" id="add-to-watchlist-button" href="#">Add to watchlist</a>
+            <a class="btn btn-primary" id="add-button" href="#">Add to watchlist</a>
           </div>
         </div>
           `;
         });
 
-
-        $('#add-to-watchlist-button').on('click', () => {
-          let movie = {
-            poster: movie.poster_path,
-            title: movie.title,
-            releaseDate: movie.release_date,
-            // Other movie data
+        $('#add-button').on('click', ()=> {
+          let displayMovies = {
+            poster: movies.poster_path,
+            title: movies.title,
+            year: movies.release_date,
           };
-        
-          localStorage.setItem('selectedMovie', JSON.stringify(movie));
+           
+          
+          localStorage.setItem('selectedMovie', JSON.stringify(displayMovies));
+          let selectedMovie = JSON.parse(localStorage.getItem('selectedMovie'));
+           if (selectedMovie){
+            `
+            <div class="col-md-3">
+            <div class="well text-center">
+            <img src="https://image.tmdb.org/t/p/original${poster}">
+            <h5>${title}</h5>
+            <h4>${year}<h4>
+            `
+           }
+
         });
 
         $('#movies').html(displayMovies);
+        $('#selected-movie').html(selectedMovie);
       })
     }catch(error) {
      console.log(error)
