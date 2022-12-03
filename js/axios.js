@@ -31,6 +31,7 @@
             <img src="https://image.tmdb.org/t/p/original${movie.poster_path}">
             <h5>${movie.title}</h5>
             <h4>${movie.release_date}<h4>
+            <a class="btn btn-primary" href="#">Add to watchlist</a>
           </div>
         </div>
           `;
