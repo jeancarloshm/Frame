@@ -31,12 +31,24 @@
           <a href="https://www.themoviedb.org/movie/${movie.movie_id} target="_blank"><img src="https://image.tmdb.org/t/p/original${movie.poster_path}"></a>
             <h5>${movie.title}</h5>
             <h4>${movie.release_date}<h4>
-            <a class="btn btn-primary" href="#">Add to watchlist</a>
+            <a class="btn btn-primary" id="add-to-watchlist-button" href="#">Add to watchlist</a>
           </div>
         </div>
           `;
         });
+
+
+        $('#add-to-watchlist-button').on('click', () => {
+          let movie = {
+            poster: movie.poster_path,
+            title: movie.title,
+            releaseDate: movie.release_date,
+            // Other movie data
+          };
         
+          localStorage.setItem('selectedMovie', JSON.stringify(movie));
+        });
+
         $('#movies').html(displayMovies);
       })
     }catch(error) {
