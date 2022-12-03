@@ -26,13 +26,13 @@
         let displayMovies = '';
         $.each(movies, (index, movie) => {
           displayMovies += `
-            <div class="col-md-3">
-              <div class="well text-center">
-                <img src="https://image.tmdb.org/t/p/original/${movie.poster_path}">
-                <h5>${movie.title}</h5>
-                <p class ="movie-overview">${movie.overview}</p>
-              </div>
-            </div>
+          <div class="col-md-3">
+          <div class="well text-center">
+            <img src="https://image.tmdb.org/t/p/original${movie.poster_path}">
+            <h5>${movie.title}</h5>
+            <h4>${movie.release_date}<h4>
+          </div>
+        </div>
           `;
         });
         

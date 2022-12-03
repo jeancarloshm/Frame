@@ -1,3 +1,4 @@
+
 #movies .col-md-3 img {
     height: 240px;
     width: 190px;
@@ -7,8 +8,12 @@
     margin: 10px 0 15px 0;
     font-size: 13px;
     height: 30px;
-    color:white;
   }
+
   #movies, #movie img {
     width: 100%;
+  }
+
+  #movies .col-md-3 {
+    background-color: white;
   }
