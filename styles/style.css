@@ -117,11 +117,12 @@ header {
 .box-1{
     display: flex;
     justify-content: space-between;
+    font-size: 40px;
 }
 
 .logo{
     color: whitesmoke;
-    font-size: 30px;
+    font-size: 40px;
     font-weight: bold;
 }
 
@@ -140,6 +141,7 @@ header {
     cursor: pointer;
     font-size: 18px;
     text-transform: uppercase;
+    width: max-content;
 }
 .nav-items:hover{
     background: #041a50a3;
