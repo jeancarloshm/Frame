@@ -8,77 +8,112 @@
 //  e.preventDefault();
 //  })
 
- //event on submit on jqeuery
- $(document).ready(() => {
-    $(`#search-form`).on(`submit`, (e) =>{
-        let searchInput = ($(`#searchInput`).val())
-        searchMovie(searchInput)
-        e.preventDefault();
-    })
- })
+//event on submit on jqeuery
 
- const searchMovie =  async (searchInput) => {
-    try { 
-      axios.get(`https://api.themoviedb.org/3/search/movie?api_key=4a24d8326eef858419a61cb94a02d429&language=en-US&query=${searchInput}&page=1&include_adult=false `)
-      .then((response) => {
-        console.log(response);
-        let movies = response.data.results;
-        let displayMovies = '';
-        $.each(movies, (index, movie) => {
-          displayMovies += `
-          <div class="col-md-3">
+//Inicio de JQuery
+
+$(document).ready(() => {
+  $(`#search-form`).on(`submit`, (e) => {
+    let searchInput = $(`#searchInput`).val();
+    searchMovie(searchInput);
+    e.preventDefault();
+  });
+
+  //Metodo que invoca los datos en AXIOS mediante el Search Input (Recordar que si esta undefined sale la China)
+  const obtainData = async (searchInput) => {
+    try {
+      const {
+        data: { results },
+      } = await axios.get(
+        `https://api.themoviedb.org/3/search/movie?api_key=4a24d8326eef858419a61cb94a02d429&language=en-US&query=${
+          searchInput == undefined ? ` ` : searchInput
+        }&page=1&include_adult=false `
+      );
+
+      return results;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  //Renderizar las peliculas cuando se busquen
+  const searchMovie = async (searchInput) => {
+    try {
+      //Llama a el metodo ObtainData para obtener las diferentes peliculas (Superman, Batman, Spiderman ..... )
+      const results = await obtainData(searchInput);
+
+      let displayMovies;
+      $.each(results, (index, { title, poster_path, release_date }) => {
+        displayMovies += `
+          <div class="col-md-3"> 
           <div class="well text-center">
-          <img src="https://image.tmdb.org/t/p/original${movie.poster_path}"></a>
-            <h5>${movie.title}</h5>
-            <h4>${movie.release_date}<h4>
-            <a class="btn btn-primary" id="add-button" href="#">Add to watchlist</a>
+          <img src="https://image.tmdb.org/t/p/original${poster_path}"></a>
+            <h5>${title}</h5>
+            <h4>${release_date}<h4>
+            <a class="btn btn-primary" id="add-button ``"  >Add to watchlist</a>
           </div>
         </div>
           `;
-        });
+      });
 
-        $('#add-button').on('click', ()=> {
-          let displayMovies = {
-            poster: movies.poster_path,
-            title: movies.title,
-            year: movies.release_date,
-          };
-           
-          
-          localStorage.setItem('selectedMovie', JSON.stringify(displayMovies));
-          let selectedMovie = JSON.parse(localStorage.getItem('selectedMovie'));
-           if (selectedMovie){
-            `
-            <div class="col-md-3">
-            <div class="well text-center">
-            <img src="https://image.tmdb.org/t/p/original${poster}">
-            <h5>${title}</h5>
-            <h4>${year}<h4>
-            `
-           }
+      
+      $("#movies").html(displayMovies);
 
-        });
+      //Si le da click a un boton con el ID: Add-Boton que realice la funcion (EN MANTENIMIENTO!!!!!! )
+      
+      $("#add-button").click(() => {
 
-        $('#movies').html(displayMovies);
-        $('#selected-movie').html(selectedMovie);
-      })
-    }catch(error) {
-     console.log(error)
+        
+        //SOLUCIONAR PARA QUE SE ELIJA LA PELICULA CORRECTA ! 
+        
+        let displayToWatch = {
+          poster: results.poster_path,
+          title: results.title,
+          year: results.release_date,
+        };
+
+        console.log(displayToWatch);
+      
+       
+        localStorage.setItem("selectedMovie", JSON.stringify(displayMovies));
+        let selectedMovie = JSON.parse(localStorage.getItem("selectedMovie"));
+        console.log(selectedMovie);
+        if (selectedMovie) {
+          `
+        <div class="col-md-3">
+        <div class="well text-center">
+        <img src="https://image.tmdb.org/t/p/original${poster}">
+        <h5>${title}</h5>
+        <h4>${year}<h4>
+        `;
+        }
+      });
+
+
+      //NO TENGO IDEA PARA QUE ES ESTE CODIGO TODAVIA !
+
+      // $("#selected-movie").html(selectedMovie);
+
+  
+    } 
+    catch (error) {
+      console.log(error);
     }
-}
+  };
 
-// const getPopularMovies = async() => {
-//     try {
-//         const response = await axios.get('https://api.themoviedb.org/3/movie/popular?api_key=4a24d8326eef858419a61cb94a02d429&language=en-US&page=1')
-//         console.log(response.data.results) 
+  
 
-//     } catch (error) {
-//         console.log(error)
-//     }
-    
-// }
+  // const getPopularMovies = async() => {
+  //     try {
+  //         const response = await axios.get('https://api.themoviedb.org/3/movie/popular?api_key=4a24d8326eef858419a61cb94a02d429&language=en-US&page=1')
+  //         console.log(response.data.results)
 
-// getPopularMovies()
-searchMovie()
+  //     } catch (error) {
+  //         console.log(error)
+  //     }
 
+  // }
 
+  // getPopularMovies()
+  searchMovie();
+});
