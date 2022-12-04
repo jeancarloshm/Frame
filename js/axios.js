@@ -37,8 +37,60 @@ $(document).ready(() => {
       const results = await obtainData(searchInput);
       console.log(results)
 
+     
       let displayMovies;
-      $.each(results, (index, { title, poster_path, release_date }) => {
+      $.each(results, (index, { id, title, poster_path, release_date }) => {
+        displayMovies += `
+          <div class="col-md-3"> 
+          <div class="well text-center">
+          <img src="https://image.tmdb.org/t/p/original${poster_path}"></a>
+            <h5>${title}</h5>
+            <h4>${release_date}<h4>
+            <button class="btn btn-primary" onClick="${addToWatchlist(id)}" type="button">Add to watchlist</button>
+          </div>
+        </div>
+          `;
+      });
+
+      $("#movies").html(displayMovies);
+      
+      //Si le da click a un boton con el ID: Add-Boton que realice la funcion (EN MANTENIMIENTO!!!!!! )
+      
+      function addToWatchlist(id) {
+        const movie = results.find(m => m.id === id) 
+        const displayToWatch =  {
+        id: movie.id,
+        poster: movie.poster_path,
+        title: movie.title,
+        year: movie.release_date,
+        }
+        const currentWatchlist = localStorage.getItem('watchList') || '[]'
+        const newWatchlist = JSON.parse(currentWatchlist)
+        newWatchlist.push(displayToWatch)
+        localStorage.setItem('watchList' ,JSON.stringify(newWatchlist))
+       };
+
+      
+
+
+
+
+      //$("#selected-movie").html(selectedMovie);
+    } 
+    catch (error) {
+      console.log(error);
+    }
+  };
+
+  
+
+   const getPopularMovies = async() => {
+       try {
+           const response = await axios.get('https://api.themoviedb.org/3/movie/popular?api_key=4a24d8326eef858419a61cb94a02d429&language=en-US&page=1')
+           console.log(response.data.results)
+
+           let displayMovies;
+      $.each(response.data.results, (index, { title, poster_path, release_date }) => {
         displayMovies += `
           <div class="col-md-3"> 
           <div class="well text-center">
@@ -51,62 +103,15 @@ $(document).ready(() => {
           `;
       });
 
-      
       $("#movies").html(displayMovies);
-      
-      //Si le da click a un boton con el ID: Add-Boton que realice la funcion (EN MANTENIMIENTO!!!!!! )
-      
-      $("#add-button").click(() => {
-        //SOLUCIONAR PARA QUE SE ELIJA LA PELICULA CORRECTA ! 
-        
-        let displayToWatch = {
-          poster: results[0].poster_path,
-          title: results[0].title,
-          year: results[0].release_date,
-        };
+           
 
-        console.log(displayToWatch);
-      
-       //FUNCIONA!//
-        localStorage.setItem("selectedMovie", JSON.stringify(displayToWatch));
-        //let selectedMovie = JSON.parse(localStorage.getItem("selectedMovie"));
-        //console.log(selectedMovie);
-        if (selectedMovie) {
-          `
-        <div class="col-md-3">
-        <div class="well text-center">
-        <img src="https://image.tmdb.org/t/p/original${poster}">
-        <h5>${title}</h5>
-        <h4>${year}<h4>
-        `;
-        }
-      });
+       } catch (error) {
+           console.log(error)
+       }
 
+   }
 
-      //NO TENGO IDEA PARA QUE ES ESTE CODIGO TODAVIA !
-
-      // $("#selected-movie").html(selectedMovie);
-
-  
-    } 
-    catch (error) {
-      console.log(error);
-    }
-  };
-
-  
-
-  // const getPopularMovies = async() => {
-  //     try {
-  //         const response = await axios.get('https://api.themoviedb.org/3/movie/popular?api_key=4a24d8326eef858419a61cb94a02d429&language=en-US&page=1')
-  //         console.log(response.data.results)
-
-  //     } catch (error) {
-  //         console.log(error)
-  //     }
-
-  // }
-
-  // getPopularMovies()
+   getPopularMovies()
   searchMovie();
 });
