@@ -22,14 +22,8 @@ $(document).ready(() => {
   //Metodo que invoca los datos en AXIOS mediante el Search Input (Recordar que si esta undefined sale la China)
   const obtainData = async (searchInput) => {
     try {
-      const {
-        data: { results },
-      } = await axios.get(
-        `https://api.themoviedb.org/3/search/movie?api_key=4a24d8326eef858419a61cb94a02d429&language=en-US&query=${
-          searchInput == undefined ? ` ` : searchInput
-        }&page=1&include_adult=false `
+      const {data: { results }} = await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=4a24d8326eef858419a61cb94a02d429&language=en-US&query=${searchInput == undefined ? '': searchInput}&page=1&include_adult=false `
       );
-
       return results;
     } catch (error) {
       console.log(error);
@@ -41,6 +35,7 @@ $(document).ready(() => {
     try {
       //Llama a el metodo ObtainData para obtener las diferentes peliculas (Superman, Batman, Spiderman ..... )
       const results = await obtainData(searchInput);
+      console.log(results)
 
       let displayMovies;
       $.each(results, (index, { title, poster_path, release_date }) => {
@@ -50,7 +45,7 @@ $(document).ready(() => {
           <img src="https://image.tmdb.org/t/p/original${poster_path}"></a>
             <h5>${title}</h5>
             <h4>${release_date}<h4>
-            <a class="btn btn-primary" id="add-button"  >Add to watchlist</a>
+            <a class="btn btn-primary" id="add-button" >Add to watchlist</a>
           </div>
         </div>
           `;
@@ -58,26 +53,24 @@ $(document).ready(() => {
 
       
       $("#movies").html(displayMovies);
-
+      
       //Si le da click a un boton con el ID: Add-Boton que realice la funcion (EN MANTENIMIENTO!!!!!! )
       
       $("#add-button").click(() => {
-
-        
         //SOLUCIONAR PARA QUE SE ELIJA LA PELICULA CORRECTA ! 
         
         let displayToWatch = {
-          poster: results.poster_path,
-          title: results.title,
-          year: results.release_date,
+          poster: results[0].poster_path,
+          title: results[0].title,
+          year: results[0].release_date,
         };
 
         console.log(displayToWatch);
       
-       
-        localStorage.setItem("selectedMovie", JSON.stringify(displayMovies));
-        let selectedMovie = JSON.parse(localStorage.getItem("selectedMovie"));
-        console.log(selectedMovie);
+       //FUNCIONA!//
+        localStorage.setItem("selectedMovie", JSON.stringify(displayToWatch));
+        //let selectedMovie = JSON.parse(localStorage.getItem("selectedMovie"));
+        //console.log(selectedMovie);
         if (selectedMovie) {
           `
         <div class="col-md-3">
