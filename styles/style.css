@@ -47,7 +47,7 @@ header {
     display: flex;
     margin: 0 auto;
     position: absolute;
-    top: 210px;
+    top: 280px;
     left: 50%;
     transform: translateX(-50%);
     max-width: 600px;
@@ -126,6 +126,7 @@ header {
     color: whitesmoke;
     font-size: 40px;
     font-weight: bold;
+    margin-left: 60px;
 }
 
 .nav-links{
@@ -152,4 +153,7 @@ header {
 .nav-link:hover{
     color: #834efd;
     border-bottom: 2px solid #834efd;
+}
+.log{
+    width: 150px;
 }

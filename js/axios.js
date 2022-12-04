@@ -50,7 +50,7 @@ $(document).ready(() => {
           <img src="https://image.tmdb.org/t/p/original${poster_path}"></a>
             <h5>${title}</h5>
             <h4>${release_date}<h4>
-            <a class="btn btn-primary" id="add-button ``"  >Add to watchlist</a>
+            <a class="btn btn-primary" id="add-button"  >Add to watchlist</a>
           </div>
         </div>
           `;
