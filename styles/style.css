@@ -14,22 +14,10 @@ a {
 header {
     background-image: linear-gradient(rgba(36, 153, 248, 0.267), rgba(92, 32, 141, 0.671)), url('/images/Avatar.jpg');
     background-size: cover;
-    background-position: center 21%;  
+    background-attachment: fixed;
+    background-position: center ;  
+    background-repeat: no-repeat;
     padding: 100px 50px;
-}
-@media (max-width: 650px) {
-    header h1 {
-        font-size: 2rem;
-        width: 100%;
-    }
-
-    .header-contents {
-        flex-wrap: wrap;
-    }
-
-    .header-link {
-        text-decoration: underline;
-    }
 }
 
 .header-link{
@@ -56,7 +44,7 @@ header {
 
 
 }
-@media (max-width: 650px) {
+@media (max-width: 550px) {
     .main-search-field {
         flex-wrap: wrap;
         gap: 0.5em;
@@ -83,8 +71,6 @@ header {
     background: none;
     border: 2px solid rgb(44, 107, 183);
 }
-
-
 
 .main-search-field input::placeholder{
     color: #becefa;
@@ -127,6 +113,12 @@ header {
     font-size: 40px;
     font-weight: bold;
     margin-left: 60px;
+
+}
+@media screen and (min-width: 550px){
+    .logo {
+        margin-left: 20px;
+    }
 }
 
 .nav-links{
