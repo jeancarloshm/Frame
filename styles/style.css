@@ -12,13 +12,25 @@ a {
 
 
 header {
-    background-image: linear-gradient(rgba(36, 153, 248, 0.267), rgba(92, 32, 141, 0.671)), url('/images/Avatar.jpg');
+    background-image: linear-gradient(rgba(36, 153, 248, 0.267), rgba(92, 32, 141, 0.671),rgba(32, 141, 141, 0.671),rgba(41, 44, 220, 0.756)), url('/images/Avatar.jpg');
     background-size: cover;
-    background-attachment: fixed;
-    background-position: center ;  
     background-repeat: no-repeat;
+    background-position: center 21%;  
     padding: 100px 50px;
+    position: relative;
 }
+.header-contents{
+    margin: 0 10px;
+    padding: 0 15px;
+    height: 60px;
+    border-radius: 10px;
+    transition: all .4s;
+    cursor: pointer;
+    font-size: 18px;
+    text-transform: uppercase;
+    width: max-content;
+}
+
 
 .header-link{
     text-decoration: none;
@@ -44,7 +56,7 @@ header {
 
 
 }
-@media (max-width: 550px) {
+@media (max-width: 450px) {
     .main-search-field {
         flex-wrap: wrap;
         gap: 0.5em;
@@ -63,14 +75,17 @@ header {
     }
 }
 .main-search-field input {
-    border: 1px solid gray;
+    border: 1px solid rgb(235, 226, 226);
+    
     color: whitesmoke;
     font-size: 1em;
     padding: 10px 40px;
     border-radius: 10px 0 0 10px ;
     background: none;
-    border: 2px solid rgb(44, 107, 183);
+    border: 1px solid rgb(235, 237, 239);
 }
+
+
 
 .main-search-field input::placeholder{
     color: #becefa;
@@ -79,14 +94,14 @@ header {
 
 .main-search-field button {
     display: flex;
-    border: 1px solid rgb(44, 107, 183);
+    border: 1px solid rgb(235, 237, 239);
     border-radius: 0 10px 10px 0;
     color: whitesmoke;
     font-size: 20px;
     padding: 10px 20px;
     cursor: pointer;
     transition: 0.5s;
-    background: rgb(44, 107, 183);
+    background: rgb(7, 110, 235);
     text-shadow: 2px 2px 3px rgba(36, 36, 36, 0.555);
     
 }
@@ -113,10 +128,9 @@ header {
     font-size: 40px;
     font-weight: bold;
     margin-left: 60px;
-
 }
-@media screen and (min-width: 550px){
-    .logo {
+@media screen and (max-width: 450px ) {
+    .logo{
         margin-left: 20px;
     }
 }
@@ -127,7 +141,7 @@ header {
     line-height: 60px;
     
 }
-.nav-items {
+.nav-items  {
     margin: 0 10px;
     padding: 0 15px;
     height: 60px;
