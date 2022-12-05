@@ -54,24 +54,44 @@ $(document).ready(() => {
 
       
       //Si le da click a un boton con el ID: Add-Boton que realice la funcion (EN MANTENIMIENTO!!!!!! )
-   $("#movies").on("click", "#add-button", (e) => {
+      
+    $("#movies").on("click", "#add-button", (e) => {
     const movieElement = $(e.target).closest(".col-md-3")
     const title = movieElement.find("h5").text()
     const posterPath = movieElement.find("img").attr("src")
     const releaseDate = movieElement.find("h4").text()
 
-     const movieWatchlist = {
+    const movieWatchlist = {
       title: title,
       posterPath: posterPath,
-      releaseDate: releaseDate
-     }
+      releaseDate: releaseDate,
+    }
      
     
-     localStorage.setItem('MovieInWatch', JSON.stringify(movieWatchlist))
-     console.log(movieWatchlist)
+    const currentWatchlist = localStorage.getItem('movieInWatch') || '[]'
+    const newWatchlist = JSON.parse(currentWatchlist)
+    newWatchlist.push(movieWatchlist)
+    localStorage.setItem('movieInWatch' ,JSON.stringify(newWatchlist))
+    console.log(movieWatchlist)
    })
-
   
+
+  //Si le da click a un boton con el ID: Add-Boton que realice la funcion (EN MANTENIMIENTO!!!!!! )
+      
+  // function addToWatchlist(id) {
+  //   const movie = results.find(m => m.id === id) 
+  //   const displayToWatch =  {
+  //   id: movie.id,
+  //   poster: movie.poster_path,
+  //   title: movie.title,
+  //   year: movie.release_date,
+  //   }
+  //   const currentWatchlist = localStorage.getItem('watchList') || '[]'
+  //   const newWatchlist = JSON.parse(currentWatchlist)
+  //   newWatchlist.push(displayToWatch)
+  //   localStorage.setItem('watchList' ,JSON.stringify(newWatchlist))
+  //  };
+
       
 
    $("#movies").html(displayMovies);
@@ -85,7 +105,20 @@ $(document).ready(() => {
     }
   };
 
-  
+  function displayToWatchList() {
+    let selectedMovie = JSON.parse(localStorage.getItem('movieInWatch'));
+    if (selectedMovie) {
+      `<div class="col-md-3">
+      <div class="well text-center">
+       <img src="https://image.tmdb.org/t/p/original${posterPath}">
+        <h5>${title}</h5>
+        <h4>${releaseDate}}<h4>
+      </div>
+    </div>`;
+    }
+    $("#selected-movie").html(displayToWatchList());
+
+  }  
 
    const getPopularMovies = async() => {
        try {
