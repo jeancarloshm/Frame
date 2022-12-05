@@ -37,3 +37,16 @@
     height: 30px;
     color: whitesmoke;
   }
+
+  #popular-movies .col-md-3 img {
+    height: 240px;
+    width: 190px;
+    margin-top: 10px;
+  }
+  #popular-movies .col-md-3 h5,h4, p {
+    margin: 10px 0 15px 0;
+    font-size: 13px;
+    height: 30px;
+    color: whitesmoke;
+  }
+

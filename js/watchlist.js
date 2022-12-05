@@ -23,6 +23,7 @@
   //   }
   //   displayData();
 
+  $(document).ready(function(){
     var data = localStorage.getItem('movieInWatch');
     if (data) {
         data = JSON.parse(data);
@@ -41,6 +42,7 @@
         `);
     });
     }
+});
 
     
     // console.log(x);

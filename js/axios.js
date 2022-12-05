@@ -36,8 +36,7 @@ $(document).ready(() => {
     try {
       //Llama a el metodo ObtainData para obtener las diferentes peliculas (Superman, Batman, Spiderman ..... )
       const results = await obtainData(searchInput);
-      console.log();
-      let displayMovies;
+      let displayMovies = [];
       $.each(results, (index, { id, title, poster_path, release_date }) => {
         displayMovies += `
           <div class="col-md-3"> 
@@ -156,7 +155,7 @@ $(document).ready(() => {
            const response = await axios.get('https://api.themoviedb.org/3/movie/popular?api_key=4a24d8326eef858419a61cb94a02d429&language=en-US&page=1')
            console.log(response.data.results)
 
-           let displayPopular;
+           let displayPopular = [];
       $.each(response.data.results, (index, { id, title, poster_path, release_date }) => {
         displayPopular += `
           <div class="col-md-3"> 
@@ -171,8 +170,36 @@ $(document).ready(() => {
           `;
       });
 
-      $("#movies").html(displayPopular);
-           
+      $("#popular-movies").html(displayPopular);
+
+      $("#popular-movies").on("click", "#add-button", (e) => {
+        const movieElement = $(e.target).closest(".col-md-3")
+        const title = movieElement.find("h4").text()
+        const id = movieElement.find('h6').text()
+        console.log(id)
+        const posterPath = movieElement.find("img").attr("src")
+        const releaseDate = movieElement.find("h5").text()
+        
+        const currentWatchlist = localStorage.getItem('movieInWatch') || '[]'
+        const newWatchlist = JSON.parse(currentWatchlist)
+         if (newWatchlist.find(m => m.id === id)){
+          return 
+         }
+         
+        const movieWatchlist = {
+          id: id,
+          title: title,
+          posterPath: posterPath,
+          releaseDate: releaseDate,
+        }
+    
+        
+       
+        
+        newWatchlist.push(movieWatchlist)
+        localStorage.setItem('movieInWatch' ,JSON.stringify(newWatchlist))
+        console.log(movieWatchlist)
+       })
 
        } catch (error) {
            console.log(error)
