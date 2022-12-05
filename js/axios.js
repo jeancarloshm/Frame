@@ -46,32 +46,35 @@ $(document).ready(() => {
           <img src="https://image.tmdb.org/t/p/original${poster_path}"></a>
             <h5>${title}</h5>
             <h4>${release_date}<h4>
-            <button class="btn btn-primary" onClick="${addToWatchlist(id)}" type="button">Add to watchlist</button>
+            <button class="btn btn-primary" id = "add-button" type="button">Add to watchlist</button>
           </div>
         </div>
           `;
       });
 
-      $("#movies").html(displayMovies);
       
       //Si le da click a un boton con el ID: Add-Boton que realice la funcion (EN MANTENIMIENTO!!!!!! )
-      
-      function addToWatchlist(id) {
-        const movie = results.find(m => m.id === id) 
-        const displayToWatch =  {
-        id: movie.id,
-        poster: movie.poster_path,
-        title: movie.title,
-        year: movie.release_date,
-        }
-        const currentWatchlist = localStorage.getItem('watchList') || '[]'
-        const newWatchlist = JSON.parse(currentWatchlist)
-        newWatchlist.push(displayToWatch)
-        localStorage.setItem('watchList' ,JSON.stringify(newWatchlist))
-       };
+   $("#movies").on("click", "#add-button", (e) => {
+    const movieElement = $(e.target).closest(".col-md-3")
+    const title = movieElement.find("h5").text()
+    const posterPath = movieElement.find("img").attr("src")
+    const releaseDate = movieElement.find("h4").text()
 
+     const movieWatchlist = {
+      title: title,
+      posterPath: posterPath,
+      releaseDate: releaseDate
+     }
+     
+    
+     localStorage.setItem('MovieInWatch', JSON.stringify(movieWatchlist))
+     console.log(movieWatchlist)
+   })
+
+  
       
 
+   $("#movies").html(displayMovies);
 
 
 
