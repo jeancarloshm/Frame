@@ -1,8 +1,27 @@
 {
   "dependencies": {
-    "jest": "^29.3.1"
+    "jest": "^29.3.1",
+    "yargs": "^17.6.2"
   },
   "scripts": {
-    "test": "jest --watchAll --verbose "
-  }
+    "test": "jest"
+  },
+  "name": "mywatchlist",
+  "description": "Movies/series watch list using TMDB API",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/enmareynoso/MyWatchList.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/enmareynoso/MyWatchList/issues"
+  },
+  "homepage": "https://github.com/enmareynoso/MyWatchList#readme"
 }
