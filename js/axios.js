@@ -102,6 +102,28 @@ $(document).ready(() => {
   //  };
 
       
+  //  function displayData() {
+  //   var data = localStorage.getItem('movieInWatch');
+  //   if (data) {
+  //   data = JSON.parse(data);
+  //   $('#selected-movie').html(''); // clear previous data
+  //   for (var i = 0; i < data.length; i++) {
+  //   $('#selected-movie').append(`
+  //        <div class="col-md-3"> 
+  //         <div class="well text-center">
+  //         <img src="https://image.tmdb.org/t/p/original${data[i].posterPath}">
+  //           <h4>${data[i].title}</h4>
+  //           <h5>${data[i].releaseDate}<h5>
+  //           <h6 hidden>${data[i].id}</h6>
+  //         </div>
+  //       </div>
+  //   `);
+  //   $("selected-movie").html(displayData());
+  //   }
+  //   }
+  //   }
+    
+  //   displayData();
 
    $("#movies").html(displayMovies);
 
@@ -114,34 +136,34 @@ $(document).ready(() => {
     }
   };
 
-  function displayToWatchList() {
-    let selectedMovie = JSON.parse(localStorage.getItem('movieInWatch'));
-    if (selectedMovie) {
-      `<div class="col-md-3">
-      <div class="well text-center">
-       <img src="https://image.tmdb.org/t/p/original${posterPath}">
-        <h5>${title}</h5>
-        <h4>${releaseDate}}<h4>
-      </div>
-    </div>`;
-    }
-    $("#selected-movie").html(displayToWatchList());
+  // function displayToWatchList() {
+  //   let selectedMovie = JSON.parse(localStorage.getItem('movieInWatch'));
+  //   if (selectedMovie) {
+  //     `<div class="col-md-3">
+  //     <div class="well text-center">
+  //      <img src="https://image.tmdb.org/t/p/original${posterPath}">
+  //       <h5>${title}</h5>
+  //       <h4>${releaseDate}}<h4>
+  //     </div>
+  //   </div>`;
+  //   }
+  //   $("#selected-movie").html(displayToWatchList());
 
-  }  
+  // }  
 
    const getPopularMovies = async() => {
        try {
            const response = await axios.get('https://api.themoviedb.org/3/movie/popular?api_key=4a24d8326eef858419a61cb94a02d429&language=en-US&page=1')
            console.log(response.data.results)
 
-           let displayMovies;
+           let displayPopular;
       $.each(response.data.results, (index, { id, title, poster_path, release_date }) => {
-        displayMovies += `
+        displayPopular += `
           <div class="col-md-3"> 
           <div class="well text-center">
           <img src="https://image.tmdb.org/t/p/original${poster_path}"></a>
             <h4>${title}</h4>
-            <h5>${release_date}<h5>
+            <h5>${release_date}</h5>
             <h6 hidden>${id}</h6>
             <a class="btn btn-primary" id="add-button" >Add to watchlist</a>
           </div>
@@ -149,7 +171,7 @@ $(document).ready(() => {
           `;
       });
 
-      $("#movies").html(displayMovies);
+      $("#movies").html(displayPopular);
            
 
        } catch (error) {
