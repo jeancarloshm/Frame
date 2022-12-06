@@ -88,7 +88,7 @@ $(document).ready(() => {
             <h4>${title}</h4>
             <h5>${release_date}</h5>
             <h6 hidden>${id}</h6>
-            <a class="btn btn-primary" id="add-button" >Add to watchlist</a>
+            <a class="btn btn-primary" id="add-button">Add to watchlist</a>
           </div>
         </div>
           `;
