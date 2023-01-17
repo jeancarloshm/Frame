@@ -24,6 +24,7 @@ $(document).ready(() => {
 
       //Llama a el metodo ObtainData para obtener las diferentes peliculas 
       const results = await obtainData(searchInput);
+      console.log(results)
       let displayMovies = [];
       $.each(results, (index, { id, title, poster_path, release_date }) => {
         displayMovies += `
