@@ -7,7 +7,7 @@
   "scripts": {
     "test": "jest"
   },
-  "name": "mywatchlist",
+  "name": "frame",
   "description": "Movies/series watch list using TMDB API",
   "version": "1.0.0",
   "main": "index.js",
