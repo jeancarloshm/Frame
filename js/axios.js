@@ -66,6 +66,7 @@ const searchMovie = async (searchInput) => {
       });
       
     //Si le da click a un boton con el ID: Add-Boton que realice la funcion 
+    $("#movies").off("click", "#add-button");
     $("#movies").on("click", "#add-button", (e) => {
       addToWatchlist(e)
     });
