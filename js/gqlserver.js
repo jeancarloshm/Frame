@@ -1,7 +1,8 @@
-var express = require('express');
-var { graphqlHTTP } = require('express-graphql');
-var { buildSchema } = require('graphql');
-var axios = require('axios')
+require('dotenv').config();
+const express = require(process.env.EXPRESS);
+const { graphqlHTTP } = require(process.env.GRAPHQLHTTP);
+const { buildSchema } = require(process.env.BUILDSCHEMA);
+const axios = require(process.env.AXIOS);
 
 
 
@@ -25,9 +26,12 @@ type Query {
 var root = {
     Query: {
         async searchMovies(_, { searchInput }) {
-          const { data: { results } } = await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=4a24d8326eef858419a61cb94a02d429&language=en-US&query=${searchInput}&page=1&include_adult=false`);
-          return results.filter(movie => movie.id && movie.title && movie.poster_path && movie.release_date);
-    }
+            if (!searchInput) {
+                return [] // or throw an error, or return null
+              }
+              const { data: { results } } = await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=4a24d8326eef858419a61cb94a02d429&language=en-US&query=${searchInput}&page=1&include_adult=false`);
+              return results.filter(movie => movie.id && movie.title && movie.poster_path && movie.release_date);
+            }
 },
     async popularMovies() {
             const { data: { results } } = await axios.get('https://api.themoviedb.org/3/movie/popular?api_key=4a24d8326eef858419a61cb94a02d429&language=en-US&page=1');

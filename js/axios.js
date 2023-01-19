@@ -1,17 +1,19 @@
-
-
+require('dotenv').config();
+//Search input logic//
 $(document).ready(() => {
+  getPopularMovies();
   $(`#search-form`).on(`submit`, (e) => {
     let searchInput = $(`#searchInput`).val();
     searchMovie(searchInput);
     e.preventDefault();
   });
+});
 
+require('dotenv').config();
   //Metodo que invoca los datos en AXIOS mediante el Search Input 
 const obtainData = async (searchInput) => {
     try {
-      const {data: { results }} = await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=4a24d8326eef858419a61cb94a02d429&language=en-US&query=${searchInput || ''}&page=1&include_adult=false `
-      );
+      const {data: { results }} = await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.API_KEY}&language=en-US&query=${searchInput}&page=1&include_adult=false`)
       return results;
     } catch (error) {
       console.log(error);
@@ -46,7 +48,6 @@ const addToWatchlist = (e) => {
   //Renderizar las peliculas cuando se busquen
 const searchMovie = async (searchInput) => {
     try {
-
       //Llama a el metodo ObtainData para obtener las diferentes peliculas 
       const results = await obtainData(searchInput);
       console.log(results)
@@ -70,7 +71,7 @@ const searchMovie = async (searchInput) => {
     $("#movies").on("click", "#add-button", (e) => {
       addToWatchlist(e)
     });
-    
+
     $("#movies").html(displayMovies)
     } 
     catch (error) {
@@ -83,7 +84,7 @@ const searchMovie = async (searchInput) => {
   
 const getPopularMovies = async() => {
        try {
-           const response = await axios.get('https://api.themoviedb.org/3/movie/popular?api_key=4a24d8326eef858419a61cb94a02d429&language=en-US&page=1')
+           const response = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.API_KEY}&language=en-US&page=1`)
            console.log(response.data.results)
 
            let displayPopular = [];
@@ -104,12 +105,10 @@ const getPopularMovies = async() => {
       $("#popular-movies").on("click", "#add-button", (e) => {
         addToWatchlist(e)
        })
+
        $("#popular-movies").html(displayPopular);
        } catch (error) {
            console.log(error)
        }
    }
 
-   getPopularMovies()
-  searchMovie();
-});
