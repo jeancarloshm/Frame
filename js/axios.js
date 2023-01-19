@@ -1,4 +1,4 @@
-require('dotenv').config();
+import config from './config.json'
 //Search input logic//
 $(document).ready(() => {
   getPopularMovies();
