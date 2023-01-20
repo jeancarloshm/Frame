@@ -12,7 +12,7 @@ jobs:
       - run:
           name: "Check Image Integrity"
           command: "docker run --rm frame-app sh -c 'echo Image Integrity Check Passed'"
-  run-test:
+   run-test:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
     docker:
