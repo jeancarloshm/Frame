@@ -1,6 +1,6 @@
 // import {API_KEY} from "./../env.js"
-import {API_SEARCH_LINK} from "./../env.js"
-import {API_POPULAR_LINK} from "./../env.js"
+import {API_SEARCH_LINK} from "../../env.js"
+import {API_POPULAR_LINK} from "../../env.js"
 
 //Search input logic//
 $(document).ready(() => {
