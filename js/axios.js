@@ -1,4 +1,7 @@
-import config from './config.json'
+// import {API_KEY} from "./../env.js"
+import {API_SEARCH_LINK} from "./../env.js"
+import {API_POPULAR_LINK} from "./../env.js"
+
 //Search input logic//
 $(document).ready(() => {
   getPopularMovies();
@@ -9,11 +12,10 @@ $(document).ready(() => {
   });
 });
 
-require('dotenv').config();
   //Metodo que invoca los datos en AXIOS mediante el Search Input 
 const obtainData = async (searchInput) => {
     try {
-      const {data: { results }} = await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.API_KEY}&language=en-US&query=${searchInput}&page=1&include_adult=false`)
+      const {data: { results }} = await axios.get(API_SEARCH_LINK + `&language=en-US&query=${searchInput}&page=1&include_adult=false`)
       return results;
     } catch (error) {
       console.log(error);
@@ -84,7 +86,7 @@ const searchMovie = async (searchInput) => {
   
 const getPopularMovies = async() => {
        try {
-           const response = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.API_KEY}&language=en-US&page=1`)
+           const response = await axios.get(API_POPULAR_LINK + `&language=en-US&page=1`)
            console.log(response.data.results)
 
            let displayPopular = [];

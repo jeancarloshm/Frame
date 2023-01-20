@@ -1,8 +1,10 @@
 require('dotenv').config();
-const express = require(process.env.EXPRESS);
-const { graphqlHTTP } = require(process.env.GRAPHQLHTTP);
-const { buildSchema } = require(process.env.BUILDSCHEMA);
-const axios = require(process.env.AXIOS);
+const GQL_PORT = process.env.GQL_SERVER_PORT;
+
+var express = require('express');
+var { graphqlHTTP } = require('express-graphql');
+var { buildSchema } = require('graphql');
+var axios = require('axios')
 
 
 
@@ -52,5 +54,5 @@ app.use('/graphql', graphqlHTTP({
   graphiql: true,
 }));
 
-app.listen(4000);
-console.log('Running a GraphQL API server at http://localhost:4000/graphql');
+app.listen(GQL_PORT);
+console.log(`Running a GraphQL API server at http://localhost:${GQL_PORT}/graphql`);
