@@ -3,4 +3,3 @@ node_modules/**
 env.js
 webpack.config.js
 .vscode/*
-.circleci/*
