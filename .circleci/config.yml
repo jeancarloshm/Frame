@@ -5,14 +5,7 @@ version: 2.1
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
-    docker:
-      - image: cimg/node:19.1.0
-    steps:
-      - checkout
-      - run:
-          name: "Check Image Integrity"
-          command: "docker run --rm frame-app sh -c 'echo Image Integrity Check Passed'"
-   run-test:
+  say-hello:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
     docker:
@@ -37,6 +30,6 @@ jobs:
 workflows:
   frame-workflow:
     jobs:
-      - run-test
-    
-# VS Code Extension Version: 1.5.1
+      - say-hello
+
+# VS Code Extension Version: 1.4.0
