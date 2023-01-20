@@ -67,6 +67,8 @@ const searchMovie = async (searchInput) => {
         </div>
           `;
       });
+
+      $('#popular-movies').hide();
       
     //Si le da click a un boton con el ID: Add-Boton que realice la funcion 
     $("#movies").off("click", "#add-button");
@@ -103,6 +105,8 @@ const getPopularMovies = async() => {
         </div>
           `;
       });
+
+      $('#popular-movies').show();
 
       $("#popular-movies").on("click", "#add-button", (e) => {
         addToWatchlist(e)
