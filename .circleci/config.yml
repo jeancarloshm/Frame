@@ -37,3 +37,11 @@ jobs:
           command: |
             docker run jeancarloshm/frame-app npm run test:watchlist
 
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
+      - test
+      - watchlist_test
+
