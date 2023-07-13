@@ -22,6 +22,9 @@ jobs:
       - setup_remote_docker:
           version: 20.10.7
       - run:
+          name: Log in to Docker Hub
+          command: docker login --username $DOCKER_USERNAME --password $DOCKER_PASSWORD
+      - run:
           name: Test Docker Image
           command: |
             docker run jeancarloshm/frame-app npm test
@@ -32,6 +35,9 @@ jobs:
       - checkout
       - setup_remote_docker:
           version: 20.10.7
+      - run:
+          name: Log in to Docker Hub
+          command: docker login --username $DOCKER_USERNAME --password $DOCKER_PASSWORD
       - run:
           name: Run Watchlist Test
           command: |
@@ -44,4 +50,5 @@ workflows:
       - build
       - test
       - watchlist_test
+
 
