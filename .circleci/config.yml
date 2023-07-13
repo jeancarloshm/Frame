@@ -25,3 +25,15 @@ jobs:
           name: Test Docker Image
           command: |
             docker run jeancarloshm/frame-app npm test
+
+  watchlist_test:
+    executor: docker-executor
+    steps:
+      - checkout
+      - setup_remote_docker:
+          version: 20.10.7
+      - run:
+          name: Run Watchlist Test
+          command: |
+            docker run jeancarloshm/frame-app npm run test:watchlist
+
