@@ -6,7 +6,7 @@ WORKDIR /usr/source/app
 # Copy necessary files and dependencies
 COPY package*.json ./
 COPY src/ src/
-COPY .env .env
+COPY .env .
 COPY env.js .
 
 # Install app dependencies   
