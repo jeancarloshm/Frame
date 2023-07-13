@@ -16,7 +16,7 @@ RUN npm install
 ENV NODE_ENV=production
 
 # Expose the port that the application runs on
-EXPOSE 8080
+EXPOSE 3000
 
 # Start the application
 CMD ["npm" ,"start" ]
