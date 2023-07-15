@@ -2,40 +2,34 @@ version: 2.1
 executors:
   docker-executor:
     docker:
-      - image: circleci/node:14
+      - image: cypress/browsers:node14.17.0-chrome91-ff89
 
 jobs:
   build:
     executor: docker-executor
     steps:
       - checkout
-      - setup_remote_docker:
-          version: 20.10.7
       - run:
-          name: Build Docker Image
-          command: docker build -t jeancarloshm/frame-app .
+          name: Install Dependencies
+          command: npm install
 
   test:
     executor: docker-executor
     steps:
       - checkout
-      - setup_remote_docker:
-          version: 20.10.7
       - run:
-          name: Test Docker Image
-          command: |
-            docker run jeancarloshm/frame-app npm test
+          name: Run Tests
+          command: npm test
 
   cypress_test:
     executor: docker-executor
     steps:
       - checkout
-      - setup_remote_docker:
-          version: 20.10.7
       - run:
           name: Run Cypress Tests
           command: |
-            docker run -v $PWD:/root -w /root -e CYPRESS_baseUrl=http://localhost:3000 cypress/included:8.3.0 run --config-file cypress.config.js --spec cypress/e2e/watchlist.spec.cy.js
+            npm install cypress
+            $(npm bin)/cypress run --config-file cypress.config.js --spec cypress/e2e/watchlist.spec.cy.js
 
 workflows:
   version: 2
@@ -44,6 +38,7 @@ workflows:
       - build
       - test
       - cypress_test
+
 
 
 
