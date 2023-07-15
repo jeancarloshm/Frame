@@ -1,17 +1,58 @@
-const { expect } = require('chai');
-const { addToWatchList, currentWatchlist } = require('/src/js/axios.js'); // Import your application's functions
+const { JSDOM } = require('jsdom');
 
-describe('Watch List', () => {
-  it('should add a movie to the watch list', () => {
-    const movie = { title: 'Fast X', id: 385687 };
+// Mock the localStorage
+const localStorageMock = (() => {
+  let store = {};
 
-    // Add the movie to the watch list
-    addToWatchList(movie);
+  return {
+    getItem: jest.fn(key => store[key]),
+    setItem: jest.fn((key, value) => {
+      store[key] = value.toString();
+    }),
+    clear: jest.fn(() => {
+      store = {};
+    }),
+  };
+})();
 
-    // Get the watch list
-    const watchList = currentWatchlist();
+// Set up the JSDOM environment
+const jsdom = new JSDOM('<!DOCTYPE html><html><body><div id="selected-movie"></div></body></html>', { runScripts: 'dangerously' });
+const { window } = jsdom;
 
-    // Assert that the movie is in the watch list
-    expect(watchList).to.deep.include(movie);
+// Set up the global objects
+global.window = window;
+global.document = window.document;
+global.localStorage = localStorageMock;
+
+// Import the JavaScript file to be tested
+const { renderSelectedMovies } = require('../src/js/watchlist.js');
+
+describe('renderSelectedMovies', () => {
+  beforeEach(() => {
+    localStorage.clear(); // Clear localStorage before each test
   });
+
+  it('should render selected movies in the DOM', () => {
+    // Mock the data in localStorage
+    localStorage.setItem('movieInWatch', JSON.stringify([
+      {
+        id: '385687',
+        title: 'Fast X',
+        posterPath: 'https://image.tmdb.org/t/p/original/fiVW06jE7z9YnO4trhaMEdclSiC.jpg',
+      },
+    ]));
+
+    // Call the renderSelectedMovies function
+    renderSelectedMovies();
+
+    // Verify the movies are rendered in the DOM
+    const selectedMovies = document.querySelectorAll('#selected-movie .col-md-3');
+    expect(selectedMovies.length).toBe(1);
+    expect(selectedMovies[0].querySelector('h4').textContent).toBe('Fast X');
+    expect(selectedMovies[0].querySelector('h6').textContent).toBe('385687');
+    expect(selectedMovies[0].querySelector('img').getAttribute('src')).toBe('https://image.tmdb.org/t/p/original/fiVW06jE7z9YnO4trhaMEdclSiC.jpg');
+  });
+
+  // Add more test cases as needed
 });
+

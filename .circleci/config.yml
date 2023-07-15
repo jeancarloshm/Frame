@@ -22,26 +22,22 @@ jobs:
       - setup_remote_docker:
           version: 20.10.7
       - run:
-          name: Log in to Docker Hub
-          command: docker login --username $DOCKER_USERNAME --password $DOCKER_PASSWORD
-      - run:
           name: Test Docker Image
           command: |
             docker run jeancarloshm/frame-app npm test
 
-  watchlist_test:
+  cypress_test:
     executor: docker-executor
     steps:
       - checkout
       - setup_remote_docker:
           version: 20.10.7
       - run:
-          name: Log in to Docker Hub
-          command: docker login --username $DOCKER_USERNAME --password $DOCKER_PASSWORD
-      - run:
-          name: Run Watchlist Test
+          name: Run Cypress Tests
           command: |
-            docker run jeancarloshm/frame-app npm run test:watchlist
+            docker run -v $PWD:/app -w /app cypress/included:8.3.0
+          environment:
+            CYPRESS_baseUrl: 'http://localhost:3000' # Update with your app's base URL
 
 workflows:
   version: 2
@@ -49,6 +45,7 @@ workflows:
     jobs:
       - build
       - test
-      - watchlist_test
+      - cypress_test
+
 
 
