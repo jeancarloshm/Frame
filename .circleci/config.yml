@@ -35,9 +35,7 @@ jobs:
       - run:
           name: Run Cypress Tests
           command: |
-            docker run -v $PWD:/app -w /app cypress/included:8.3.0
-          environment:
-            CYPRESS_baseUrl: 'http://localhost:3000' # Update with your app's base URL
+            docker run -v $PWD:/app -w /app cypress/included:8.3.0 run --spec cypress/e2e/watchlist.spec.cy.js
 
 workflows:
   version: 2
@@ -46,6 +44,7 @@ workflows:
       - build
       - test
       - cypress_test
+
 
 
 
