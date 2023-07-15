@@ -35,7 +35,7 @@ jobs:
       - run:
           name: Run Cypress Tests
           command: |
-            docker run -v $PWD:/root -w /root -e CYPRESS_baseUrl=http://localhost cypress/included:8.3.0 run --config-file cypress.config.js --spec cypress/e2e/watchlist.spec.cy.js
+            docker run -v $PWD:/root -w /root -e CYPRESS_baseUrl=http://localhost:3000 cypress/included:8.3.0 run --config-file cypress.config.js --spec cypress/e2e/watchlist.spec.cy.js
 
 workflows:
   version: 2
