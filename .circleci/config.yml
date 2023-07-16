@@ -21,6 +21,16 @@ jobs:
           name: Run Tests
           command: npm test
 
+  performance_test:
+    executor: docker-executor
+    steps:
+      - checkout
+      - run:
+          name: Run Performance Test
+          command: |
+            npm install lighthouse
+            node tests/performance-test.js
+
   cypress_test:
     executor: docker-executor
     steps:
@@ -37,7 +47,9 @@ workflows:
     jobs:
       - build
       - test
+      - performance_test
       - cypress_test
+
 
 
 
