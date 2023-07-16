@@ -30,6 +30,15 @@ jobs:
           command: |
             npm install lighthouse
             node tests/performance-test.js
+      - run:
+          name: Build Application
+          command: npm run build
+      - run:
+          name: Run Lighthouse Test
+          command: npx lighthouse https://your-app-url --output html --output-path ./reports/lighthouse-report.html
+      - store_artifacts:
+          path: ./reports
+          destination: lighthouse-reports
 
   cypress_test:
     executor: docker-executor
