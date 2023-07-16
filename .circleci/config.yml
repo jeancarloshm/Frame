@@ -38,7 +38,7 @@ jobs:
           command: sleep 5 # Adjust the time as needed for the server to start
       - run:
           name: Run Lighthouse Tests
-          command: npx lighthouse http://localhost:8080 --output html --output-path ./reports/lighthouse-report.html
+          command: npx lighthouse http://localhost:3000 --output html --output-path ./reports/lighthouse-report.html
       - store_artifacts:
           path: ./reports
           destination: lighthouse-reports
