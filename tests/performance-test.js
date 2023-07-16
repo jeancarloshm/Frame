@@ -2,6 +2,7 @@ const lighthouse = require('lighthouse');
 const chromeLauncher = require('chrome-launcher');
 
 (async () => {
+  try {
   const chrome = await chromeLauncher.launch();
   const options = { port: chrome.port };
   const runnerResult = await lighthouse('http://localhost:3000', options);
@@ -11,4 +12,8 @@ const chromeLauncher = require('chrome-launcher');
   console.log('Loading speed (First Contentful Paint):', runnerResult.lhr.audits['first-contentful-paint'].numericValue);
 
   await chrome.kill();
+} catch (error) {
+  console.error('Error occurred:', error);
+}
+
 })();
