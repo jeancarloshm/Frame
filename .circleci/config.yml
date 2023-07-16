@@ -29,13 +29,11 @@ jobs:
           name: Run Performance Test
           command: |
             npm install lighthouse
+            npm install lhci
             node tests/performance-test.js
       - run:
-          name: Build Application
-          command: npm run build
-      - run:
           name: Run Lighthouse Test
-          command: npx lighthouse https://your-app-url --output html --output-path ./reports/lighthouse-report.html
+          command: npx lhci autorun
       - store_artifacts:
           path: ./reports
           destination: lighthouse-reports
