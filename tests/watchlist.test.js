@@ -2,7 +2,6 @@ const fs = require('fs');
 const path = require('path');
 const { JSDOM } = require('jsdom');
 
-const $ = require('jquery');
 // Create a virtual DOM using JSDOM
 const htmlContent = fs.readFileSync('src/views/watchlist.html', 'utf-8');
 const { window } = new JSDOM(htmlContent, { runScripts: 'dangerously' });
@@ -12,8 +11,8 @@ const { window } = new JSDOM(htmlContent, { runScripts: 'dangerously' });
 // Set up the global objects
 global.window = window;
 global.document = window.document;
-
-global.$ = window.$; // Assuming jQuery is used in the script
+const $ = require('jquery')(window);
+global.$ = $; // Assuming jQuery is used in the script
 
 const { renderSelectedMovies } = require('../src/js/watchlist.js');
 
