@@ -1,15 +1,12 @@
 const fs = require('fs');
 const path = require('path');
-const jquery = fs.readFileSync(path.resolve(__dirname, './node_modules/jquery/dist/jquery.min.js'), 'utf8');
 const { JSDOM } = require('jsdom');
 
 // Create a virtual DOM using JSDOM
 const { window } = new JSDOM('<!doctype html><html><body></body></html>', { runScripts: 'dangerously' });
 
 // Inject jQuery into the virtual DOM
-const script = window.document.createElement('script');
-script.textContent = jquery;
-window.document.body.appendChild(script);
+
 // Set up the global objects
 global.window = dom.window;
 global.document = window.document;
