@@ -1,4 +1,3 @@
-  
   $(document).ready(function(){
     var data = localStorage.getItem('movieInWatch');
     if (data) {
