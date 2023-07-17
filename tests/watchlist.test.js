@@ -1,7 +1,7 @@
 
 
 import { render, screen } from '@testing-library/react';
-import { renderSelectedMovies } from './renderSelectedMovies';
+import { renderSelectedMovies } from 'src/js/watchlist.js';
 describe('renderSelectedMovies', () => {
   it('renders the movies in the DOM', () => {
     const data = [

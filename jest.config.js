@@ -6,4 +6,7 @@ module.exports = {
     testEnvironment: 'jest-environment-jsdom',
     verbose: true,
     testURL: "http://localhost/",
+    testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.js$',
+    moduleFileExtensions: ['js', 'json', 'node'],
+    
   };
