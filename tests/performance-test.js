@@ -4,7 +4,7 @@ const { URL } = require('url');
 
 (async () => {
   const port = 41421; // Replace with your desired port number
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
   const page = await browser.newPage();
 
   // Start a local server
