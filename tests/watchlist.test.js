@@ -1,6 +1,10 @@
 const { addToWatchlist } = require('../src/js/axios.js');
 const $ = require('jquery');
 
+jest.mock('../src/js/axios.js', () => ({
+  addToWatchlist: jest.fn(),
+}));
+
 describe('addToWatchlist', () => {
   beforeEach(() => {
     localStorage.clear(); // Clear localStorage before each test
@@ -36,10 +40,10 @@ describe('addToWatchlist', () => {
     // Verify that the movie is added to the watchlist
     expect(updatedWatchlist.length).toBe(2);
     expect(updatedWatchlist[1]).toEqual({
-          id: '385687',
-          title: 'Fast X',
-          posterPath: 'https://image.tmdb.org/t/p/original/fiVW06jE7z9YnO4trhaMEdclSiC.jpg',
-          releaseDate: '2023-05-17',
+      id: '385687',
+      title: 'Fast X',
+      posterPath: 'https://image.tmdb.org/t/p/original/fiVW06jE7z9YnO4trhaMEdclSiC.jpg',
+      releaseDate: '2023-05-17',
     });
   });
 
@@ -74,3 +78,4 @@ describe('addToWatchlist', () => {
     expect(window.alert).toHaveBeenCalledWith('Movie already in watchlist!');
   });
 });
+
