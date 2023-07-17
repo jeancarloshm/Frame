@@ -11,7 +11,8 @@ const htmlContent = fs.readFileSync(path.resolve(__dirname, '../src/views/watchl
 const dom = new JSDOM(htmlContent);
 global.window = dom.window;
 global.document = dom.window.document;
-global.$ = require('jquery')(global.window);
+
+const $ = selector => document.querySelector(selector);
 
 // Import the function to be tested
 const { renderSelectedMovies } = require('../src/js/watchlist.js'); // Adjust the path accordingly
@@ -20,7 +21,7 @@ const { renderSelectedMovies } = require('../src/js/watchlist.js'); // Adjust th
 describe('renderSelectedMovies', () => {
   beforeEach(() => {
     // Clear the selected-movie element before each test
-    $('#selected-movie').empty();
+    $('#selected-movie').innerHTML = '';
   });
 
   it('should render selected movies correctly in the DOM', () => {
@@ -43,10 +44,10 @@ describe('renderSelectedMovies', () => {
     const renderedMovies = $('#selected-movie').children();
     assert.equal(renderedMovies.length, 1, 'Only one movie should be rendered');
 
-    const movieElement = renderedMovies.first();
-    const movieTitle = movieElement.find('h4').text();
-    const moviePoster = movieElement.find('img').attr('src');
-    const movieId = parseInt(movieElement.find('h6').text());
+    const movieElement = renderedMovies[0];
+    const movieTitle = movieElement.querySelector('h4').textContent;
+    const moviePoster = movieElement.querySelector('img').getAttribute('src');
+    const movieId = parseInt(movieElement.querySelector('h6').textContent);
 
       assert.equal(movieTitle, movieData[0].title, 'Movie title should match');
       assert.equal(moviePoster, movieData[0].posterPath, 'Movie poster should match');
