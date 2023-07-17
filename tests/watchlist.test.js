@@ -1,19 +1,6 @@
 const fs = require('fs');
 const { JSDOM } = require('jsdom');
-// Mock the localStorage
-const localStorageMock = (() => {
-  let store = {};
 
-  return {
-    getItem: jest.fn(key => store[key]),
-    setItem: jest.fn((key, value) => {
-      store[key] = value.toString();
-    }),
-    clear: jest.fn(() => {
-      store = {};
-    }),
-  };
-})();
 
 
 
