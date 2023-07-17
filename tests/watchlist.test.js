@@ -78,10 +78,10 @@ describe('addToWatchlist', () => {
         },
       ])
     );
-
+  
     // Mock the alert function
-    window.alert = jest.fn();
-
+    global.alert = jest.fn();
+  
     // Call the addToWatchlist function with a movie that is already in the watchlist
     const movieElement = {
       target: {
@@ -91,10 +91,10 @@ describe('addToWatchlist', () => {
       },
     };
     addToWatchlist(movieElement);
-
+  
     // Verify that the alert is displayed
-    expect(window.alert).toHaveBeenCalledWith('Movie already in watchlist!');
-  });
+    expect(global.alert).toHaveBeenCalledWith('Movie already in watchlist!');
+  });  
 });
 
 
