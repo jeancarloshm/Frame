@@ -31,8 +31,21 @@ global.localStorage = localStorageMock;
 // Import the JavaScript file to be tested
 
 describe('renderSelectedMovies', () => {
-  beforeEach(() => {
-    localStorage.clear(); // Clear localStorage before each test
+  const localStorageMock = {
+    getItem: jest.fn(),
+    setItem: jest.fn(),
+  };
+
+  beforeAll(() => {
+    // Assign the localStorage mock to the global object
+    global.localStorage = localStorageMock;
+  });
+
+  afterEach(() => {
+    // Clear the mocks after each test
+    jest.clearAllMocks();
+    // Clear the DOM after each test
+    document.body.innerHTML = '';
   });
 
   it('should render selected movies in the DOM', () => {
