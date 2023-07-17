@@ -5,7 +5,7 @@ const http = require('http');
 
 (async () => {
   const port = 3000;
-  const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
+  const browser = await puppeteer.launch({ args: ['--no-sandbox'], headless: true });
   const page = await browser.newPage();
 
   const server = http.createServer((req, res) => {
