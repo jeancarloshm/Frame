@@ -37,13 +37,14 @@ describe('renderSelectedMovies', () => {
 
   it('should render selected movies in the DOM', () => {
     // Mock the data in localStorage
-    localStorage.setItem('movieInWatch', JSON.stringify([
+    const movieData = [
       {
         id: '385687',
         title: 'Fast X',
         posterPath: 'https://image.tmdb.org/t/p/original/fiVW06jE7z9YnO4trhaMEdclSiC.jpg',
       },
-    ]));
+    ];
+    global.localStorage.getItem.mockReturnValueOnce(JSON.stringify(movieData));
 
     // Call the renderSelectedMovies function
     require('../src/js/watchlist.js');
