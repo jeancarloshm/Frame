@@ -1,19 +1,19 @@
 const fs = require('fs');
+const path = require('path');
+const jquery = fs.readFileSync(path.resolve(__dirname, './node_modules/jquery/dist/jquery.min.js'), 'utf8');
 const { JSDOM } = require('jsdom');
 
+// Create a virtual DOM using JSDOM
+const { window } = new JSDOM('<!doctype html><html><body></body></html>', { runScripts: 'dangerously' });
 
-
-
-// Set up the JSDOM environment
-const htmlContent = fs.readFileSync('src/views/watchlist.html', 'utf-8');
-const dom = new JSDOM(htmlContent, { runScripts: 'dangerously' });
-
-
+// Inject jQuery into the virtual DOM
+const script = window.document.createElement('script');
+script.textContent = jquery;
+window.document.body.appendChild(script);
 // Set up the global objects
 global.window = dom.window;
-global.document = dom.window.document;
-const $ = require('jquery'); // Import jQuery
-global.$ = $; // Assuming jQuery is used in the script
+global.document = window.document;
+global.$ = window.$; // Assuming jQuery is used in the script
 
 const { renderSelectedMovies } = require('../src/js/watchlist.js');
 
