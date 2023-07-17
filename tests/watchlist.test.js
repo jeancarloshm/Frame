@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const { JSDOM } = require('jsdom');
 
+const $ = require('jquery');
 // Create a virtual DOM using JSDOM
 const htmlContent = fs.readFileSync('src/views/watchlist.html', 'utf-8');
 const { window } = new JSDOM(htmlContent, { runScripts: 'dangerously' });
@@ -11,7 +12,7 @@ const { window } = new JSDOM(htmlContent, { runScripts: 'dangerously' });
 // Set up the global objects
 global.window = window;
 global.document = window.document;
-const $ = require('jquery');
+
 global.$ = window.$; // Assuming jQuery is used in the script
 
 const { renderSelectedMovies } = require('../src/js/watchlist.js');
@@ -45,7 +46,6 @@ describe('renderSelectedMoviesFunction', () => {
           id: '385687',
           title: 'Fast X',
           posterPath: 'https://image.tmdb.org/t/p/original/fiVW06jE7z9YnO4trhaMEdclSiC.jpg',
-          releaseDate: '2023-05-17',
         },
       ])
     );
