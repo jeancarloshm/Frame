@@ -21,7 +21,7 @@ jobs:
           name: Run Tests
           command: |
             npm install 
-            npx mocha test/renderSelectedMovies.test.js
+            npx mocha tests/watchlist.test.js
 
   performance_test:
     executor: docker-executor
