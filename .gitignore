@@ -5,3 +5,4 @@ webpack.config.js
 .vscode/*
 .parcel-cache/*
 .DS_Store
+.idea
