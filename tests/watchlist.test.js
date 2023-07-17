@@ -1,3 +1,4 @@
+const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
 
 // Mock the localStorage
@@ -16,7 +17,7 @@ const localStorageMock = (() => {
 })();
 
 // Set up the JSDOM environment
-const jsdom = new JSDOM('<!DOCTYPE html><html><body><div id="selected-movie"></div></body></html>', { runScripts: 'dangerously' });
+jsdom = new JSDOM('<!DOCTYPE html><html><body><div id="selected-movie"></div></body></html>', { runScripts: 'dangerously' });
 const { window } = jsdom;
 
 // Set up the global objects
