@@ -1,4 +1,4 @@
-
+const { JSDOM } = jsdom;
 
 // Mock the localStorage
 const localStorageMock = (() => {
