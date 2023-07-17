@@ -42,7 +42,7 @@ const { renderSelectedMovies } = require('../src/js/watchlist.js'); // Adjust th
 describe('renderSelectedMovies', () => {
   beforeEach(() => {
     // Clear the selected-movie element before each test
-    $('#selected-movie').innerHTML = '';
+    $('#selected-movie').empty();
     global.localStorage.clear();
   });
 
