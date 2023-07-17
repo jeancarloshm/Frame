@@ -14,9 +14,8 @@ global.window = window;
 global.document = window.document;
 
 // Minimal version of $ function using document.querySelector
-const $ = selector => document.querySelector(selector);
+const $ = require('jquery')(window);
 
-const jQuery = require('jquery')(window);
 
 // Extend the minimal version with jQuery functions (optional)
 
