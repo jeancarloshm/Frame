@@ -6,12 +6,12 @@ const { JSDOM } = require('jsdom');
 
 // Set up the JSDOM environment
 const htmlContent = fs.readFileSync('src/views/watchlist.html', 'utf-8');
-const { window } = new JSDOM(htmlContent, { runScripts: 'dangerously' });
+const dom = new JSDOM(htmlContent, { runScripts: 'dangerously' });
 
 
 // Set up the global objects
-global.window = window;
-global.document = window.document;
+global.window = dom.window;
+global.document = domwindow.document;
 global.$ = require('jquery'); // Assuming jQuery is used in the script
 
 const { renderSelectedMovies } = require('../src/js/watchlist.js');
