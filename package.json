@@ -35,6 +35,7 @@
   "devDependencies": {
     "cypress": "^12.17.1",
     "jsdom": "^19.0.0",
+    "lighthouse": "^9.6.8",
     "puppeteer": "^16.0.0",
     "jquery": "^3.6.0",
     "mocha": "^9.1.3",
