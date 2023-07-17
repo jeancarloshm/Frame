@@ -11,7 +11,7 @@ const dom = new JSDOM(htmlContent, { runScripts: 'dangerously' });
 
 // Set up the global objects
 global.window = dom.window;
-global.document = domwindow.document;
+global.document = dom.window.document;
 global.$ = require('jquery'); // Assuming jQuery is used in the script
 
 const { renderSelectedMovies } = require('../src/js/watchlist.js');
