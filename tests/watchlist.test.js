@@ -1,6 +1,7 @@
 
 // Import the necessary modules and the function to be tested
 const { assert } = require('chai');
+const jsdom = require('jsdom');
 const { JSDOM } = require('jsdom');
 const fs = require('fs');
 const path = require('path');
@@ -9,7 +10,10 @@ const path = require('path');
 
 // Read the HTML file that contains the selected-movie container
 const htmlContent = fs.readFileSync(path.resolve(__dirname, '../src/views/watchlist.html'), 'utf8');
-const { window } = new JSDOM(htmlContent);
+const dom = new JSDOM(htmlContent, { runScripts: 'dangerously' });
+const window = dom.window;
+const $ = require('jquery')(window);
+
 global.window = window;
 global.document = window.document;
 
