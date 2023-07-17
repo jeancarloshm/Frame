@@ -1,11 +1,8 @@
-<<<<<<< HEAD
 import lighthouse from 'lighthouse';
 const chromeLauncher = require('chrome-launcher');
-=======
 const puppeteer = require('puppeteer');
 const lighthouse = require('lighthouse');
 const http = require('http'); // Require 'http' module for the local server
->>>>>>> origin/test_eliardo
 
 (async () => {
   const port = 41421; // Replace with your desired port number
