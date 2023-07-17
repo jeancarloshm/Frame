@@ -14,7 +14,7 @@ global.document = dom.window.document;
 
 const $ = selector => document.querySelector(selector);
 
-const mockLocalStorage = {
+let mockLocalStorage = {
   getItem: key => mockLocalStorage[key],
   setItem: (key, value) => {
     mockLocalStorage[key] = value;
