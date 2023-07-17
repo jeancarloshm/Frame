@@ -10,8 +10,17 @@ const path = require('path');
 // Read the HTML file that contains the selected-movie container
 const htmlContent = fs.readFileSync(path.resolve(__dirname, '../src/views/watchlist.html'), 'utf8');
 const { window } = new JSDOM(htmlContent);
-const $ = require('jquery')(window);
+const { window } = new JSDOM(htmlContent);
+global.window = window;
+global.document = window.document;
 
+// Minimal version of $ function using document.querySelector
+const $ = selector => document.querySelector(selector);
+
+const jQuery = require('jquery')(window);
+
+// Extend the minimal version with jQuery functions (optional)
+$.extend($, jQuery);
 
 let mockLocalStorage = {
   getItem: key => mockLocalStorage[key],
