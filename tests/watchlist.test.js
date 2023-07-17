@@ -47,7 +47,7 @@ describe('renderSelectedMoviesFunction', () => {
     localStorageMock.getItem.mockReturnValueOnce(JSON.stringify(movieData));
 
     // Call the renderSelectedMovies function
-    renderSelectedMovies()
+    renderSelectedMovies();
 
     // Verify the movies are rendered in the DOM
     expect($('#selected-movie').find('h4').eq(0).text()).toEqual('Fast X'); // Check if the first movie's title is correct
