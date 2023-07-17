@@ -35,7 +35,9 @@ const fs = require('fs');
 
     // Generate and log the full Lighthouse report
     const report = lighthouseResult.report;
-    fs.writeFileSync('lighthouse-report.txt', report);
+    const outputPath = path.join(__dirname, 'reports', 'lighthouse-report.txt');
+
+    fs.writeFileSync(outputPath, report);
   } catch (error) {
     console.error('Error occurred:', error);
   } finally {
