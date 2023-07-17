@@ -11,7 +11,7 @@ const htmlContent = fs.readFileSync(path.resolve(__dirname, '../src/views/watchl
 const dom = new JSDOM(htmlContent);
 global.window = dom.window;
 global.document = dom.window.document;
-const $ = require('jquery')(global.window);
+global.$ = require('jquery')(global.window);
 
 // Import the function to be tested
 const { renderSelectedMovies } = require('../src/js/watchlist.js'); // Adjust the path accordingly
