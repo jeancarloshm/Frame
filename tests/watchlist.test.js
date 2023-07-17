@@ -5,6 +5,24 @@ jest.mock('../src/js/axios.js', () => ({
   addToWatchlist: jest.fn(),
 }));
 
+// Mock the localStorage object
+const localStorageMock = (() => {
+  let store = {};
+
+  return {
+    getItem: jest.fn(key => store[key]),
+    setItem: jest.fn((key, value) => {
+      store[key] = value.toString();
+    }),
+    clear: jest.fn(() => {
+      store = {};
+    }),
+  };
+})();
+
+// Set up the global objects
+global.localStorage = localStorageMock;
+
 describe('addToWatchlist', () => {
   beforeEach(() => {
     localStorage.clear(); // Clear localStorage before each test
@@ -78,4 +96,5 @@ describe('addToWatchlist', () => {
     expect(window.alert).toHaveBeenCalledWith('Movie already in watchlist!');
   });
 });
+
 
