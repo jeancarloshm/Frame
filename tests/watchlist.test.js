@@ -1,36 +1,30 @@
 const { JSDOM } = require('jsdom');
-const $ = require('jquery');
+const fs = require('fs');
+const path = require('path');
+const jquery = require('jquery');
 
-// Mock the localStorage
-const localStorageMock = (() => {
-  let store = {};
-
-  return {
-    getItem: jest.fn(key => store[key]),
-    setItem: jest.fn((key, value) => {
-      store[key] = value.toString();
-    }),
-    clear: jest.fn(() => {
-      store = {};
-    }),
-  };
-})();
+// Read the contents of the watchlist.js file
+const watchlistCode = fs.readFileSync(path.resolve(__dirname, '../src/js/watchlist.js'), 'utf8');
 
 // Set up the JSDOM environment
-const dom = new JSDOM('<!DOCTYPE html><html><body><div id="selected-movie"></div></body></html>', { runScripts: 'dangerously' });
+const dom = new JSDOM('<!DOCTYPE html><html><body><div id="selected-movie"></div></body></html>', {
+  runScripts: 'dangerously',
+  resources: 'usable',
+});
 const { window } = dom;
-const { document } = window;
 
+// Set up the global objects
 global.window = window;
-global.document = document;
-global.$ = $(window);
+global.document = window.document;
+global.$ = jquery(window);
 
-// Set up the global localStorage object
-global.localStorage = localStorageMock;
+// Run the watchlist.js code within the JSDOM environment
+window.eval(watchlistCode);
 
-// Import the JavaScript file to be tested
-const { renderSelectedMovies } = require('../src/js/watchlist.js');
+// Get the renderSelectedMovies function
+const renderSelectedMovies = window.renderSelectedMovies;
 
+// Start writing your tests
 describe('renderSelectedMovies', () => {
   beforeEach(() => {
     localStorage.clear(); // Clear localStorage before each test
@@ -59,5 +53,4 @@ describe('renderSelectedMovies', () => {
 
   // Add more test cases as needed
 });
-
 
