@@ -9,7 +9,6 @@ const { URL } = require('url');
 
   // Start a local server
   const server = await page.evaluate(() => {
-    const http = require('http');
     const server = http.createServer((req, res) => {
       res.end('Hello, World!');
     });
