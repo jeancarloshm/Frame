@@ -22,6 +22,8 @@ jobs:
           command: |
             npm install 
             npx mocha tests/watchlist.test.js
+      - store_test_results:
+          path: /root/project
 
   performance_test:
     executor: docker-executor
@@ -35,6 +37,8 @@ jobs:
             node tests/performance-test.js
       - store_artifacts:
           path: lighthouse-report.html
+      - store_test_results:
+          path: /root/project
 
 
   cypress_test:
@@ -46,6 +50,8 @@ jobs:
           command: |
             npm install cypress
             $(npm bin)/cypress run --config-file cypress.config.js --spec cypress/e2e/watchlist.spec.cy.js
+      - store_test_results:
+          path: /root/project
 
 workflows:
   version: 2
