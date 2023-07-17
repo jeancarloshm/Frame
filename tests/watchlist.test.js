@@ -9,7 +9,7 @@ const path = require('path');
 
 // Read the HTML file that contains the selected-movie container
 const htmlContent = fs.readFileSync(path.resolve(__dirname, '../src/views/watchlist.html'), 'utf8');
-const { window } = new jsdom.JSDOM(htmlContent);
+const { window } = new JSDOM(htmlContent);
 const $ = require('jquery')(window);
 
 
