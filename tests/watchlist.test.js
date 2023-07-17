@@ -1,5 +1,4 @@
 
-const { render, screen } = require('@testing-library/react');
 const { renderSelectedMovies } = require('../src/js/watchlist.js');
 
 describe('renderSelectedMovies', () => {
