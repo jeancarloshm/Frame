@@ -12,7 +12,7 @@ const path = require('path');
 const htmlContent = fs.readFileSync(path.resolve(__dirname, '../src/views/watchlist.html'), 'utf8');
 const dom = new JSDOM(htmlContent, { runScripts: 'dangerously' });
 const window = dom.window;
-const $ = require('jquery')(window);
+const $ = require('jquery');
 
 global.window = window;
 global.document = window.document;
