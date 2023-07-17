@@ -38,13 +38,17 @@ describe('renderSelectedMoviesFunction', () => {
 
   it('should render selected movies in the DOM', () => {
     // Mock the data in localStorage
-    const movieData = [
-      {
-        id: '385687',
-        title: 'Fast X',
-        posterPath: 'https://image.tmdb.org/t/p/original/fiVW06jE7z9YnO4trhaMEdclSiC.jpg',
-      },
-    ];
+    localStorage.setItem(
+      'movieInWatch',
+      JSON.stringify([
+        {
+          id: '385687',
+          title: 'Fast X',
+          posterPath: 'https://image.tmdb.org/t/p/original/fiVW06jE7z9YnO4trhaMEdclSiC.jpg',
+          releaseDate: '2023-05-17',
+        },
+      ])
+    );
     localStorageMock.getItem.mockReturnValueOnce(JSON.stringify(movieData));
 
     // Call the renderSelectedMovies function
