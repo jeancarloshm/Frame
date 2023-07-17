@@ -1,3 +1,4 @@
+const fs = require('fs');
 const { JSDOM } = require('jsdom');
 // Mock the localStorage
 const localStorageMock = (() => {
@@ -17,8 +18,8 @@ const localStorageMock = (() => {
 
 
 // Set up the JSDOM environment
-dom = new JSDOM('<!DOCTYPE html><html><body><div id="selected-movie"></div></body></html>', { runScripts: 'dangerously' });
-const { window } = dom;
+const htmlContent = fs.readFileSync('./index.html', 'utf-8');
+const { window } = new JSDOM(htmlContent, { runScripts: 'dangerously' });
 const $ = require( "jquery" )( window );
 
 
