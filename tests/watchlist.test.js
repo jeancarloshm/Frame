@@ -4,6 +4,7 @@ const { assert } = require('chai');
 const { JSDOM } = require('jsdom');
 const fs = require('fs');
 const path = require('path');
+const $ = require('jquery');
 
 
 // Read the HTML file that contains the selected-movie container
