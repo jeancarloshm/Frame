@@ -1,5 +1,4 @@
 import { JSDOM } from 'jsdom';
-const { JSDOM } = jsdom;
 
 // Mock the localStorage
 const localStorageMock = (() => {
