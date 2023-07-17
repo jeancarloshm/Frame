@@ -36,7 +36,7 @@ jobs:
             npm install 
             node tests/performance-test.js
       - store_artifacts:
-          path: reports/lighthouse-report.txt
+          path: reports/lighthouse-report.html
 
 
   cypress_test:
