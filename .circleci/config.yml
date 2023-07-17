@@ -21,7 +21,7 @@ jobs:
           name: Run Tests
           command: |
             npm install jest
-            npx test
+            npm test
 
   performance_test:
     executor: docker-executor
