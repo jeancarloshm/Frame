@@ -49,7 +49,7 @@ describe('renderSelectedMoviesFunction', () => {
         },
       ])
     );
-    localStorageMock.getItem.mockReturnValueOnce(JSON.stringify(movieData));
+    localStorageMock.getItem.mockReturnValueOnce('movieInWatch');
 
     // Call the renderSelectedMovies function
     renderSelectedMovies();
