@@ -3,7 +3,8 @@ const path = require('path');
 const { JSDOM } = require('jsdom');
 
 // Create a virtual DOM using JSDOM
-const { window } = new JSDOM('<!doctype html><html><body></body></html>', { runScripts: 'dangerously' });
+const htmlContent = fs.readFileSync('src/views/watchlist.html', 'utf-8');
+const { window } = new JSDOM(htmlContent, { runScripts: 'dangerously' });
 
 // Inject jQuery into the virtual DOM
 
