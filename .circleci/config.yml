@@ -28,7 +28,7 @@ jobs:
       - run:
           name: Run Performance Test
           command: |
-            npm install lighthouse
+            npm install 
             node tests/performance-test.js
 
 
