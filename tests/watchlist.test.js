@@ -19,7 +19,6 @@ const $ = selector => document.querySelector(selector);
 const jQuery = require('jquery')(window);
 
 // Extend the minimal version with jQuery functions (optional)
-$.extend($, jQuery);
 
 let mockLocalStorage = {
   getItem: key => mockLocalStorage[key],
