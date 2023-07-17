@@ -46,7 +46,7 @@ describe('renderSelectedMovies', () => {
     ]));
 
     // Call the renderSelectedMovies function
-    renderSelectedMovies();
+    renderSelectedMovies;
 
     // Verify the movies are rendered in the DOM
     const selectedMovies = document.querySelectorAll('#selected-movie .col-md-3');
