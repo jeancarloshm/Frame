@@ -19,9 +19,11 @@ const localStorageMock = (() => {
 // Set up the JSDOM environment
 const dom = new JSDOM('<!DOCTYPE html><html><body><div id="selected-movie"></div></body></html>', { runScripts: 'dangerously' });
 const { window } = dom;
+const { document } = window;
+
 global.window = window;
-global.document = window.document;
-global.$ = $;
+global.document = document;
+global.$ = $(window);
 
 // Set up the global localStorage object
 global.localStorage = localStorageMock;
@@ -57,4 +59,5 @@ describe('renderSelectedMovies', () => {
 
   // Add more test cases as needed
 });
+
 
