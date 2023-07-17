@@ -73,6 +73,7 @@ describe('renderSelectedMovies', () => {
 
     const movieElement = renderedMovies[0];
     const movieTitle = movieElement.querySelector('h4').textContent;
+    console.log(movieElement.querySelector('h4').textContent);
     const moviePoster = movieElement.querySelector('img').getAttribute('src');
     const movieId = parseInt(movieElement.querySelector('h6').textContent);
 
