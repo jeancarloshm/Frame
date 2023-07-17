@@ -4,7 +4,7 @@ const lighthouse = require('lighthouse');
 const http = require('http');
 
 (async () => {
-  const port = 3000;
+  const port = 8080;
   const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
   const page = await browser.newPage();
 
