@@ -6,7 +6,7 @@ module.exports = {
     testEnvironment: 'jest-environment-jsdom',
     "type": "module",
     transformIgnorePatterns: [
-        'node_modules/(?!(@@testing-library/jest-dom)/)',
+        'node_modules/(?!(@testing-library/jest-dom)/)',
       ],
 
   };
