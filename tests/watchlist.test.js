@@ -19,6 +19,8 @@ const localStorageMock = (() => {
 // Set up the JSDOM environment
 dom = new JSDOM('<!DOCTYPE html><html><body><div id="selected-movie"></div></body></html>', { runScripts: 'dangerously' });
 const { window } = dom;
+const $ = require( "jquery" )( window );
+
 
 // Set up the global objects
 global.window = window;
