@@ -40,9 +40,6 @@ module.exports = {
 };
 
 // Call the function when the document is ready
-$(document).ready(function () {
-  renderSelectedMovies();
-});
 
 
     
