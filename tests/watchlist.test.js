@@ -5,7 +5,7 @@ const jsdom = require('jsdom');
 const { JSDOM } = require('jsdom');
 const fs = require('fs');
 const path = require('path');
-const $ = require('jquery');
+
 
 
 
@@ -13,11 +13,11 @@ const $ = require('jquery');
 const htmlContent = fs.readFileSync(path.resolve(__dirname, '../src/views/watchlist.html'), 'utf8');
 const dom = new JSDOM(htmlContent, { runScripts: 'dangerously' });
 const window = dom.window;
-const jquery  = require('jquery')(window);
+const $ = require('jquery')(window);
 
 global.window = window;
 global.document = window.document;
-
+global.$ = $;
 // Minimal version of $ function using document.querySelector
 
 
@@ -47,7 +47,7 @@ const { renderSelectedMovies } = require('../src/js/watchlist.js'); // Adjust th
 describe('renderSelectedMovies', () => {
   beforeEach(() => {
     // Clear the selected-movie element before each test
-    jquery('#selected-movie').empty();
+    $('#selected-movie').empty();
     global.localStorage.clear();
   });
 
@@ -68,7 +68,7 @@ describe('renderSelectedMovies', () => {
     renderSelectedMovies();
 
     // Assertions
-    const renderedMovies = jquery('#selected-movie').children();
+    const renderedMovies = $('#selected-movie').children();
     assert.equal(renderedMovies.length, 1, 'Only one movie should be rendered');
 
     const movieElement = renderedMovies[0];
