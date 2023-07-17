@@ -14,6 +14,22 @@ global.document = dom.window.document;
 
 const $ = selector => document.querySelector(selector);
 
+const mockLocalStorage = {
+  getItem: key => mockLocalStorage[key],
+  setItem: (key, value) => {
+    mockLocalStorage[key] = value;
+  },
+  removeItem: key => {
+    delete mockLocalStorage[key];
+  },
+  clear: () => {
+    mockLocalStorage = {};
+  },
+};
+
+// Assign the mock to global.localStorage
+global.localStorage = mockLocalStorage;
+
 // Import the function to be tested
 const { renderSelectedMovies } = require('../src/js/watchlist.js'); // Adjust the path accordingly
 
@@ -22,6 +38,7 @@ describe('renderSelectedMovies', () => {
   beforeEach(() => {
     // Clear the selected-movie element before each test
     $('#selected-movie').innerHTML = '';
+    global.localStorage.clear();
   });
 
   it('should render selected movies correctly in the DOM', () => {
