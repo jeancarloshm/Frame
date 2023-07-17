@@ -31,6 +31,7 @@ jobs:
             npm install lighthouse
             node tests/performance-test.js
 
+
   cypress_test:
     executor: docker-executor
     steps:
