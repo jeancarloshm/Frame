@@ -1,4 +1,5 @@
 const { JSDOM } = require('jsdom');
+
 // Mock the localStorage
 const localStorageMock = (() => {
   let store = {};
@@ -14,17 +15,15 @@ const localStorageMock = (() => {
   };
 })();
 
-
-
 // Set up the JSDOM environment
-dom = new JSDOM('<!DOCTYPE html><html><body><div id="selected-movie"></div></body></html>', { runScripts: 'dangerously' });
+const dom = new JSDOM('<!DOCTYPE html><html><body><div id="selected-movie"></div></body></html>', { runScripts: 'dangerously' });
 const { window } = dom;
-const $ = require( "jquery" )( window );
-
-
-// Set up the global objects
 global.window = window;
 global.document = window.document;
+const $ = require('jquery')(window);
+global.$ = $;
+
+// Set up the global localStorage object
 global.localStorage = localStorageMock;
 
 // Import the JavaScript file to be tested
