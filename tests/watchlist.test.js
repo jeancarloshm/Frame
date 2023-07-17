@@ -20,17 +20,18 @@ const localStorageMock = (() => {
 // Set up the JSDOM environment
 const htmlContent = fs.readFileSync('src/views/watchlist.html', 'utf-8');
 const { window } = new JSDOM(htmlContent, { runScripts: 'dangerously' });
-const $ = require( "jquery" )( window );
 
 
 // Set up the global objects
 global.window = window;
 global.document = window.document;
-global.localStorage = localStorageMock;
+global.$ = require('jquery'); // Assuming jQuery is used in the script
+
+const { renderSelectedMovies } = require('../src/js/watchlist.js');
 
 // Import the JavaScript file to be tested
 
-describe('renderSelectedMovies', () => {
+describe('renderSelectedMoviesFunction', () => {
   const localStorageMock = {
     getItem: jest.fn(),
     setItem: jest.fn(),
@@ -57,10 +58,10 @@ describe('renderSelectedMovies', () => {
         posterPath: 'https://image.tmdb.org/t/p/original/fiVW06jE7z9YnO4trhaMEdclSiC.jpg',
       },
     ];
-    global.localStorage.getItem.mockReturnValueOnce(JSON.stringify(movieData));
+    localStorageMock.getItem.mockReturnValueOnce(JSON.stringify(movieData));
 
     // Call the renderSelectedMovies function
-    require('../src/js/watchlist.js');
+    movieInWatch()
 
     // Verify the movies are rendered in the DOM
     const selectedMovies = document.querySelectorAll('#selected-movie .col-md-3');
