@@ -5,6 +5,7 @@ const chromeLauncher = require('chrome-launcher');
   try {
   const chrome = await chromeLauncher.launch();
   const options = { port: chrome.port };
+  await new Promise((resolve) => setTimeout(resolve, 5000));
   const runnerResult = await lighthouse('http://localhost:3000', options);
 
   // Output the performance results
