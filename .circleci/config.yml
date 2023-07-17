@@ -28,7 +28,6 @@ jobs:
       - run:
           name: Run Performance Test
           command: |
-            npm start
             npm install 
             node tests/performance-test.js
 
@@ -51,12 +50,3 @@ workflows:
       - test
       - performance_test
       - cypress_test
-
-
-
-
-
-
-
-
-
