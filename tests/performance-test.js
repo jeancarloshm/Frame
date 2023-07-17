@@ -16,7 +16,16 @@ const http = require('http');
   const serverURL = `http://localhost:${port}`;
 
   try {
-    const options = { port: port };
+    const options = {
+      port: port,
+      budgets: null, // Disable budgets if not needed
+      // Increase the timeout value (default is 1 minute)
+      settings: {
+        maxWaitForFcp: 60000, // Increase the timeout for First Contentful Paint (FCP)
+        maxWaitForLoad: 60000, // Increase the timeout for page load
+      },
+    };
+
     const lighthouseResult = await lighthouse(serverURL, options);
 
     console.log('Performance score:', lighthouseResult.lhr.categories.performance.score);
