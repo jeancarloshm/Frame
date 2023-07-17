@@ -38,6 +38,7 @@
     "jsdom": "^19.0.0",
     "lighthouse": "^9.6.8",
     "puppeteer": "^16.0.0",
-    "jquery": "^3.6.0"
+    "jquery": "^3.6.0",
+    "jest-environment-jsdom": "^27.3.1"
   }
 }
