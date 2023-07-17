@@ -31,7 +31,6 @@ jobs:
             npm start
             npm install 
             node tests/performance-test.js
-            npm stop
 
 
   cypress_test:
