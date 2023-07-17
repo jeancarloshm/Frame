@@ -18,7 +18,7 @@ const localStorageMock = (() => {
 
 
 // Set up the JSDOM environment
-const htmlContent = fs.readFileSync('jeancarloshm/Frame/src/views/watchlist.html', 'utf-8');
+const htmlContent = fs.readFileSync('src/views/watchlist.html', 'utf-8');
 const { window } = new JSDOM(htmlContent, { runScripts: 'dangerously' });
 const $ = require( "jquery" )( window );
 
