@@ -1,4 +1,3 @@
-const lighthouse = require('lighthouse');
 const chromeLauncher = require('chrome-launcher');
 const puppeteer = require('puppeteer');
 const lighthouse = require('lighthouse');
