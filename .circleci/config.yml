@@ -19,7 +19,9 @@ jobs:
       - checkout
       - run:
           name: Run Tests
-          command: npm test
+          command: |
+            npm install jest
+            npm test
 
   performance_test:
     executor: docker-executor
