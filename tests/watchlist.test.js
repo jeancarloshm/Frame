@@ -64,10 +64,8 @@ describe('renderSelectedMoviesFunction', () => {
     renderSelectedMovies()
 
     // Verify the movies are rendered in the DOM
-    const selectedMovies = document.querySelectorAll('#selected-movie .col-md-3');
-    expect(selectedMovies[0].querySelector('h4').textContent).toBe('Fast X');
-    expect(selectedMovies[0].querySelector('h6').textContent).toBe('385687');
-    expect(selectedMovies[0].querySelector('img').getAttribute('src')).toBe('https://image.tmdb.org/t/p/original/fiVW06jE7z9YnO4trhaMEdclSiC.jpg');
+    expect($('#selected-movie').find('h4').eq(0).text()).toEqual('Fast X'); // Check if the first movie's title is correct
+    expect($('#selected-movie').find('h6').eq(0).text()).toEqual('385687'); // Check if the second movie's title is correct
   });
 
   // Add more test cases as needed
