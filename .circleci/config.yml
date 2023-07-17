@@ -28,20 +28,9 @@ jobs:
       - run:
           name: Run Performance Test
           command: |
-            npm install 
+            npm install lighthouse
             node tests/performance-test.js
-      - run:
-          name: Start Local Server
-          command: npm run start-server &
-      - run:
-          name: Wait for Server to Start
-          command: sleep 5 # Adjust the time as needed for the server to start
-      - run:
-          name: Run Lighthouse Tests
-          command: npx lighthouse http://localhost:3000 --output html --output-path ./reports/lighthouse-report.html
-      - store_artifacts:
-          path: ./reports
-          destination: lighthouse-reports
+
 
   cypress_test:
     executor: docker-executor
