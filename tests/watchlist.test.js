@@ -4,13 +4,14 @@ const { assert } = require('chai');
 const { JSDOM } = require('jsdom');
 const fs = require('fs');
 const path = require('path');
+const $ = require('jquery');
 
 // Read the HTML file that contains the selected-movie container
-const htmlContent = fs.readFileSync(path.resolve(__dirname, '../src/js/watchlist.js'), 'utf8');
+const htmlContent = fs.readFileSync(path.resolve(__dirname, '../src/views/watchlist.html'), 'utf8');
 const dom = new JSDOM(htmlContent);
 global.window = dom.window;
 global.document = dom.window.document;
-const $ = require('jquery')(global.window);
+global.$ = $;;
 
 // Import the function to be tested
 const { renderSelectedMovies } = require('../src/js/watchlist.js'); // Adjust the path accordingly
