@@ -2,7 +2,6 @@ const { JSDOM } = require('jsdom');
 const fs = require('fs');
 const path = require('path');
 const jquery = require('jquery');
-const mockLocalStorage = require('mock-localstorage');
 
 // Read the contents of the watchlist.js file
 const watchlistCode = fs.readFileSync(path.resolve(__dirname, '../src/js/watchlist.js'), 'utf8');
@@ -18,7 +17,27 @@ const { window } = dom;
 global.window = window;
 global.document = window.document;
 global.$ = jquery(window);
-global.localStorage = mockLocalStorage.createStorage();
+global.localStorage = createMockLocalStorage();
+
+// Helper function to create a mock version of localStorage
+function createMockLocalStorage() {
+  let store = {};
+
+  return {
+    getItem(key) {
+      return store[key] || null;
+    },
+    setItem(key, value) {
+      store[key] = value.toString();
+    },
+    removeItem(key) {
+      delete store[key];
+    },
+    clear() {
+      store = {};
+    },
+  };
+}
 
 // Run the watchlist.js code within the JSDOM environment
 window.eval(watchlistCode);
