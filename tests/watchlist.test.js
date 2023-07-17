@@ -1,97 +1,82 @@
-const { addToWatchlist } = require('../src/js/axios.js');
-const $ = require('jquery');
 
-jest.mock('../src/js/axios.js', () => ({
-  addToWatchlist: jest.fn(),
-}));
+// Import the necessary modules and the function to be tested
+const { assert } = require('chai');
+const jsdom = require('jsdom');
+const { JSDOM } = require('jsdom');
+const fs = require('fs');
+const path = require('path');
 
-// Mock the localStorage object
-const localStorageMock = (() => {
-  let store = {};
+// Read the HTML file that contains the selected-movie container
+const htmlContent = fs.readFileSync(path.resolve(__dirname, '../src/views/watchlist.html'), 'utf8');
+const dom = new JSDOM(htmlContent, { runScripts: 'dangerously' });
+const window = dom.window;
+const $ = require('jquery')(window);
 
-  return {
-    getItem: jest.fn(key => store[key]),
-    setItem: jest.fn((key, value) => {
-      store[key] = value.toString();
-    }),
-    clear: jest.fn(() => {
-      store = {};
-    }),
-  };
-})();
+global.window = window;
+global.document = window.document;
+global.$ = $;
+// Minimal version of $ function using document.querySelector
 
-// Set up the global objects
-global.localStorage = localStorageMock;
-global.alert = jest.fn();
 
-describe('addToWatchlist', () => {
+
+// Extend the minimal version with jQuery functions (optional)
+
+let mockLocalStorage = {
+  getItem: key => mockLocalStorage[key],
+  setItem: (key, value) => {
+    mockLocalStorage[key] = value;
+  },
+  removeItem: key => {
+    delete mockLocalStorage[key];
+  },
+  clear: () => {
+    mockLocalStorage = {};
+  },
+};
+
+// Assign the mock to global.localStorage
+global.localStorage = mockLocalStorage;
+
+// Import the function to be tested
+const { renderSelectedMovies } = require('../src/js/watchlist.js'); // Adjust the path accordingly
+
+// Set up the test suite
+describe('renderSelectedMovies', () => {
   beforeEach(() => {
-    localStorage.clear(); // Clear localStorage before each test
+    // Clear the selected-movie element before each test
+    $('#selected-movie').empty();
+    global.localStorage.clear();
   });
 
-  it('should add a movie to the watchlist', () => {
-    // Set up the initial localStorage state
-    localStorage.setItem(
-      'movieInWatch',
-      JSON.stringify([
-        {
-          id: '385687',
-          title: 'Fast X',
-          posterPath: 'https://image.tmdb.org/t/p/original/fiVW06jE7z9YnO4trhaMEdclSiC.jpg',
-          releaseDate: '2023-05-17',
-        },
-      ])
-    );
-
-    // Call the addToWatchlist function
-    const movieElement = {
-      target: {
-        closest: jest.fn().mockReturnValueOnce({
-          querySelector: jest.fn().mockReturnValueOnce('123'),
-        }),
+  it('should render selected movies correctly in the DOM', () => {
+    // Mock data to be stored in localStorage
+    const movieData = [
+      {
+        id: '385687',
+        title: 'Fast X',
+        posterPath: 'https://image.tmdb.org/t/p/original/fiVW06jE7z9YnO4trhaMEdclSiC.jpg',
       },
-    };
-    addToWatchlist(movieElement);
+    ];
 
-    // Retrieve the updated watchlist from localStorage
-    const updatedWatchlist = JSON.parse(localStorage.getItem('movieInWatch'));
+    // Store the data in localStorage
+    global.localStorage.setItem('movieInWatch', JSON.stringify(movieData));
 
-    // Verify that the movie is added to the watchlist
-    expect(updatedWatchlist.length).toBe(2);
-    expect(updatedWatchlist[1]).toEqual({
-      id: '385687',
-      title: 'Fast X',
-      posterPath: 'https://image.tmdb.org/t/p/original/fiVW06jE7z9YnO4trhaMEdclSiC.jpg',
-      releaseDate: '2023-05-17',
-    });
+    // Call the function to be tested
+    renderSelectedMovies();
+
+    // Assertions
+    const renderedMovies = $('#selected-movie').children();
+    assert.equal(renderedMovies.length, 1, 'Only one movie should be rendered');
+
+    const movieElement = renderedMovies[0];
+    const movieTitle = movieElement.querySelector('h4').textContent;
+    console.log(movieElement.querySelector('h4').textContent);
+    const moviePoster = movieElement.querySelector('img').getAttribute('src');
+    const movieId = parseInt(movieElement.querySelector('h6').textContent);
+
+      assert.equal(movieTitle, movieData[0].title, 'Movie title should match');
+      assert.equal(moviePoster, movieData[0].posterPath, 'Movie poster should match');
+      assert.equal(movieId, movieData[0].id, 'Movie ID should match');
+    
   });
-
-  it('should display an alert when movie is already in watchlist', () => {
-    // Set up the initial localStorage state
-    localStorage.setItem(
-      'movieInWatch',
-      JSON.stringify([
-        {
-          id: '385687',
-          title: 'Fast X',
-          posterPath: 'https://image.tmdb.org/t/p/original/fiVW06jE7z9YnO4trhaMEdclSiC.jpg',
-          releaseDate: '2023-05-17',
-        },
-      ])
-    );
-  
-    // Call the addToWatchlist function with a movie that is already in the watchlist
-    const movieElement = {
-      target: {
-        closest: jest.fn().mockReturnValueOnce({
-          querySelector: jest.fn().mockReturnValueOnce('385687'),
-        }),
-      },
-    };
-    addToWatchlist(movieElement);
-  
-    // Verify that the alert is displayed
-    expect(global.alert).toHaveBeenCalledWith('Movie already in watchlist!');
-  });  
 });
-

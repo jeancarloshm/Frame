@@ -21,7 +21,7 @@ jobs:
           name: Run Tests
           command: |
             npm install 
-            npm test
+            npx mocha tests/watchlist.test.js
 
   performance_test:
     executor: docker-executor
@@ -51,4 +51,8 @@ workflows:
       - build
       - test
       - performance_test
-      - cypress_test
+      - cypress_test:
+          requires:
+            - build
+            - test
+            - performance_test
