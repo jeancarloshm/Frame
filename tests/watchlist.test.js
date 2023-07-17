@@ -22,6 +22,7 @@ const localStorageMock = (() => {
 
 // Set up the global objects
 global.localStorage = localStorageMock;
+global.alert = jest.fn();
 
 describe('addToWatchlist', () => {
   beforeEach(() => {
@@ -46,7 +47,7 @@ describe('addToWatchlist', () => {
     const movieElement = {
       target: {
         closest: jest.fn().mockReturnValueOnce({
-          find: jest.fn().mockReturnValueOnce({ text: jest.fn().mockReturnValueOnce('123') }),
+          querySelector: jest.fn().mockReturnValueOnce('123'),
         }),
       },
     };
@@ -78,23 +79,19 @@ describe('addToWatchlist', () => {
         },
       ])
     );
-
-    // Mock the alert function
-    global.alert = jest.fn();
-
+  
     // Call the addToWatchlist function with a movie that is already in the watchlist
     const movieElement = {
       target: {
         closest: jest.fn().mockReturnValueOnce({
-          find: jest.fn().mockReturnValueOnce({ text: jest.fn().mockReturnValueOnce('385687') }),
+          querySelector: jest.fn().mockReturnValueOnce('385687'),
         }),
       },
     };
     addToWatchlist(movieElement);
-
+  
     // Verify that the alert is displayed
     expect(global.alert).toHaveBeenCalledWith('Movie already in watchlist!');
-  });
+  });  
 });
-
 
