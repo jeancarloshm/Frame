@@ -8,7 +8,7 @@ const { window } = new JSDOM('<!doctype html><html><body></body></html>', { runS
 // Inject jQuery into the virtual DOM
 
 // Set up the global objects
-global.window = dom.window;
+global.window = window;
 global.document = window.document;
 global.$ = window.$; // Assuming jQuery is used in the script
 
