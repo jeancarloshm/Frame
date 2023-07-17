@@ -21,11 +21,16 @@ const http = require('http');
 
     console.log('Performance score:', lighthouseResult.lhr.categories.performance.score);
     console.log('Loading speed (First Contentful Paint):', lighthouseResult.lhr.audits['first-contentful-paint'].numericValue);
+
+    // Generate and log the full Lighthouse report
+    const report = lighthouseResult.report;
+    console.log(report);
   } catch (error) {
     console.error('Error occurred:', error);
   } finally {
     await browser.close();
     server.close();
   }
-});
+})();
+
 
