@@ -19,7 +19,9 @@ jobs:
       - checkout
       - run:
           name: Run Tests
-          command: npm test
+          command: |
+            npm install 
+            npm test
 
   performance_test:
     executor: docker-executor
@@ -50,12 +52,3 @@ workflows:
       - test
       - performance_test
       - cypress_test
-
-
-
-
-
-
-
-
-
