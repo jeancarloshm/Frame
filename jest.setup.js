@@ -1,4 +1,4 @@
-const jestDom = require('@testing-library/jest-dom');
+const jestDom = require('@testing-library/react');
 const { TextEncoder, TextDecoder } = require('text-encoding');
 const $ = require('jquery');
 
