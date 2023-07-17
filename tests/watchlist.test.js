@@ -13,7 +13,7 @@ global.document = dom.window.document;
 const $ = require('jquery')(global.window);
 
 // Import the function to be tested
-const { renderSelectedMovies } = require('../path/to/renderSelectedMovies'); // Adjust the path accordingly
+const { renderSelectedMovies } = require('../src/js/watchlist.js'); // Adjust the path accordingly
 
 // Set up the test suite
 describe('renderSelectedMovies', () => {
