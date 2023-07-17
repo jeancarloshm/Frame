@@ -1,4 +1,4 @@
-import jsdom from "jsdom";
+const { JSDOM } = require('jsdom');
 
 // Mock the localStorage
 const localStorageMock = (() => {
