@@ -12,7 +12,7 @@ const path = require('path');
 const htmlContent = fs.readFileSync(path.resolve(__dirname, '../src/views/watchlist.html'), 'utf8');
 const dom = new JSDOM(htmlContent, { runScripts: 'dangerously' });
 const window = dom.window;
-const $ = require('jquery');
+const jquery  = require('jquery')(window);
 
 global.window = window;
 global.document = window.document;
@@ -46,7 +46,7 @@ const { renderSelectedMovies } = require('../src/js/watchlist.js'); // Adjust th
 describe('renderSelectedMovies', () => {
   beforeEach(() => {
     // Clear the selected-movie element before each test
-    $('#selected-movie').empty();
+    jquery('#selected-movie').empty();
     global.localStorage.clear();
   });
 
@@ -67,7 +67,7 @@ describe('renderSelectedMovies', () => {
     renderSelectedMovies();
 
     // Assertions
-    const renderedMovies = $('#selected-movie').children();
+    const renderedMovies = jquery('#selected-movie').children();
     assert.equal(renderedMovies.length, 1, 'Only one movie should be rendered');
 
     const movieElement = renderedMovies[0];
