@@ -1,4 +1,5 @@
-const { addToWatchlist } = require('../src/js/watchlist.js');
+const { addToWatchlist } = require('../src/js/axios.js');
+const $ = require('jquery');
 
 describe('addToWatchlist', () => {
   beforeEach(() => {
