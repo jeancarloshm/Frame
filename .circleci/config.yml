@@ -1,0 +1,64 @@
+version: 2.1
+executors:
+  docker-executor:
+    docker:
+      - image: cypress/browsers:node14.17.0-chrome91-ff89
+
+jobs:
+  build:
+    executor: docker-executor
+    steps:
+      - checkout
+      - run:
+          name: Install Dependencies
+          command: npm install
+
+  test:
+    executor: docker-executor
+    steps:
+      - checkout
+      - run:
+          name: Run Tests
+          command: |
+            npm install 
+            npx mocha tests/watchlist.test.js
+
+
+  performance_test:
+    executor: docker-executor
+    steps:
+      - checkout
+
+      - run:
+          name: Run Performance Test
+          command: |
+            npm install 
+            node tests/performance-test.js
+      - store_artifacts:
+          path: lighthouse-report.html
+
+
+
+  cypress_test:
+    executor: docker-executor
+    steps:
+      - checkout
+      - run:
+          name: Run Cypress Tests
+          command: |
+            npm install cypress
+            $(npm bin)/cypress run --config-file cypress.config.js --spec cypress/e2e/watchlist.spec.cy.js
+
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
+      - test
+      - performance_test
+      - cypress_test:
+          requires:
+            - build
+            - test
+            - performance_test
