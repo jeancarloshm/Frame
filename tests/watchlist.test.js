@@ -61,7 +61,7 @@ describe('renderSelectedMoviesFunction', () => {
     localStorageMock.getItem.mockReturnValueOnce(JSON.stringify(movieData));
 
     // Call the renderSelectedMovies function
-    movieInWatch()
+    renderSelectedMovies()
 
     // Verify the movies are rendered in the DOM
     const selectedMovies = document.querySelectorAll('#selected-movie .col-md-3');
