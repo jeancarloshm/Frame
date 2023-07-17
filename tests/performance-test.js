@@ -2,6 +2,7 @@ const chromeLauncher = require('chrome-launcher');
 const puppeteer = require('puppeteer');
 const lighthouse = require('lighthouse');
 const http = require('http');
+const fs = require('fs');
 
 (async () => {
   const port = 3000;
@@ -34,7 +35,7 @@ const http = require('http');
 
     // Generate and log the full Lighthouse report
     const report = lighthouseResult.report;
-    console.log(report);
+    fs.writeFileSync('lighthouse-report.txt', report);
   } catch (error) {
     console.error('Error occurred:', error);
   } finally {

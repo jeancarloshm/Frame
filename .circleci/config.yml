@@ -32,6 +32,8 @@ jobs:
           command: |
             npm install 
             node tests/performance-test.js
+      - store_artifacts:
+          path: lighthouse-report.txt
 
 
   cypress_test:
