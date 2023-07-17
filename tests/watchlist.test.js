@@ -12,7 +12,6 @@ const htmlContent = fs.readFileSync(path.resolve(__dirname, '../src/views/watchl
 const { window } = new jsdom.JSDOM(htmlContent);
 const $ = require('jquery')(window);
 
-const $ = selector => document.querySelector(selector);
 
 let mockLocalStorage = {
   getItem: key => mockLocalStorage[key],
