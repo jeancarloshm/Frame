@@ -28,12 +28,15 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Create artifact directory
+          command: mkdir -p reports
+      - run:
           name: Run Performance Test
           command: |
             npm install 
             node tests/performance-test.js
       - store_artifacts:
-          path: lighthouse-report.txt
+          path: reports/lighthouse-report.txt
 
 
   cypress_test:
