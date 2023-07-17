@@ -58,7 +58,7 @@ describe('renderSelectedMoviesFunction', () => {
         posterPath: 'https://image.tmdb.org/t/p/original/fiVW06jE7z9YnO4trhaMEdclSiC.jpg',
       },
     ];
-    localStorageMock.getItem.mockReturnValueOnce(JSON.stringify(movieData));
+    global.localStorage.getItem.mockReturnValueOnce(JSON.stringify(movieData));
 
     // Call the renderSelectedMovies function
     renderSelectedMovies()
