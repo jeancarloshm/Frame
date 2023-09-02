@@ -1,5 +1,5 @@
 # Frame🍿
-Frame is a movie watchlist app that allows users to search for movies, add them to a watchlist. The app retrieves movie data from TMDB API and displays it in a user-friendly interface. Users can easily navigate through the app and keep track of the movies they want to watch. With this app, users can discover new movies, create a watchlist, and never miss a movie again.
+Frame is a movie watchlist app that allows users to search for movies and add them to a watchlist. The app retrieves movie data from TMDB API and displays it in a user-friendly interface. Users can easily navigate through the app and keep track of the movies they want to watch. With this app, users can discover new movies, create a watchlist, and never miss a movie again.
 
                  
 
