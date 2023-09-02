@@ -18,7 +18,7 @@ This will download the "frame-app" image from Docker Hub to your computer.
         docker run -p  3000:3000 jeancarloshm/frame
 
   
- This will start a container and map the container's port 8080 to your host machine's port 3000.
+ This will start a container and map the container's port 3000 to your host machine's port 3000.
 
 Once the container is running, you can access the app by navigating to (http://localhost:3000) in your web browser.
 
