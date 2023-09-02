@@ -11,9 +11,9 @@ Frame is a movie watchlist app that allows users to search for movies and add th
 
         docker pull jeancarloshm/frame
 
-This will download the "frame-app" image from Docker Hub to your computer.
+This will download the "Frame" app image from Docker Hub to your computer.
     
-3 - Next, run the following command to start a container using the "frame-app" image:
+3 - Next, run the following command to start a container using the "Frame" app image:
 
         docker run -p  3000:3000 jeancarloshm/frame
 
@@ -22,7 +22,7 @@ This will download the "frame-app" image from Docker Hub to your computer.
 
 Once the container is running, you can access the app by navigating to (http://localhost:3000) in your web browser.
 
-And that's it! 🎉 You are now running the "frame-app" inside a Docker container on your machine.
+And that's it! 🎉 You are now running the "Frame" app inside a Docker container on your machine.
 
 ## Resources
 
