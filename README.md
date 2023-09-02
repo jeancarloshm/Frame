@@ -9,18 +9,18 @@ Frame is a movie watchlist app that allows users to search for movies and add th
 
 2 - Once you have Docker installed, open your command line interface and run the following command:
 
-               docker pull enmareynoso/frame-app
+        docker pull jeancarloshm/frame
 
 This will download the "frame-app" image from Docker Hub to your computer.
     
 3 - Next, run the following command to start a container using the "frame-app" image:
 
-        docker run -p  8080:8080 enmareynoso/frame-app
+        docker run -p  3000:3000 jeancarloshm/frame
 
+  
+ This will start a container and map the container's port 8080 to your host machine's port 3000.
 
- This will start a container and map the container's port 8080 to your host machine's port 8080.
-
-Once the container is running, you can access the app by navigating to [http://localhost:8080](http://localhost:8080/) in your web browser.
+Once the container is running, you can access the app by navigating to (http://localhost:3000) in your web browser.
 
 And that's it! 🎉 You are now running the "frame-app" inside a Docker container on your machine.
 
@@ -30,5 +30,5 @@ And that's it! 🎉 You are now running the "frame-app" inside a Docker containe
 
 [Install on Windows | Docker Documentation](https://docs.docker.com/desktop/install/windows-install/) 🪟
 
-[enmareynoso/frame-app - Docker Image | Docker Hub](https://hub.docker.com/r/enmareynoso/frame-app)
+[jeancarloshm/frame - Docker Image | Docker Hub](https://hub.docker.com/r/jeancarloshm/frame)
 
