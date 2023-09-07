@@ -20,7 +20,7 @@ This will download the "Frame" app image from Docker Hub to your computer.
   
  This will start a container and map the container's port 3000 to your host machine's port 3000.
 
-Once the container is running, you can access the app by navigating to (http://localhost:3000) in your web browser.
+Once the container is running, you can access the app by navigating to "http://localhost:3000" in your web browser.
 
 And that's it! 🎉 You are now running the "Frame" app inside a Docker container on your machine.
 
